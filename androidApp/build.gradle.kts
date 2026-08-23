@@ -18,7 +18,7 @@ dependencies {
     implementation(libs.compose.uiToolingPreview)
     debugImplementation(libs.compose.uiTooling)
 }
-
+//add
 android {
     namespace = "com.devlink.myapplication"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
