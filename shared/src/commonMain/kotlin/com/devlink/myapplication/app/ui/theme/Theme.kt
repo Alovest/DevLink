@@ -9,17 +9,21 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import com.devlink.myapplication.app.ui.theme.colors.DarkBackground
 import com.devlink.myapplication.app.ui.theme.colors.DarkThemeText
+import com.devlink.myapplication.app.ui.theme.colors.GreyDarkThemeText
+import com.devlink.myapplication.app.ui.theme.colors.GreyLightThemeText
 import com.devlink.myapplication.app.ui.theme.colors.LightBackground
 import com.devlink.myapplication.app.ui.theme.colors.LightThemeText
 
 private val DarkColorScheme = darkColorScheme(
     background = DarkBackground,
-    onBackground = DarkThemeText
+    onBackground = DarkThemeText,
+    onSurface = GreyDarkThemeText
 )
 
 private val LightColorScheme = lightColorScheme(
     background = LightBackground,
-    onBackground = LightThemeText
+    onBackground = LightThemeText,
+    onSurface = GreyLightThemeText
 )
 
 val MaterialTheme.dimens: DevLinkDimensions
