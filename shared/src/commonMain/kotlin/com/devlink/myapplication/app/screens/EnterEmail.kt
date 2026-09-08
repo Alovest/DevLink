@@ -3,6 +3,7 @@ package com.devlink.myapplication.app.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -111,8 +112,8 @@ fun EnterEmail() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = MaterialTheme.dimens.spaceMedium,
-                        end = MaterialTheme.dimens.spaceMedium
+                        start = MaterialTheme.dimens.spaceLarge,
+                        end = MaterialTheme.dimens.spaceLarge
                     )
             ) {
                 Text(
@@ -187,32 +188,37 @@ fun EnterEmail() {
                     ),
                     onClick = {
                         TODO()
-                    }
+                    },
+                    shape = RoundedCornerShape(20.dp)
                 ) {
                     Image(
                         painter = painterResource(Res.drawable.vkkk),
                         contentDescription = "vk logo",
-                        modifier = Modifier.size(35.dp).padding(end = MaterialTheme.dimens.spaceMedium)
+                        modifier = Modifier
+                            .size(35.dp)
+                            .padding(end = MaterialTheme.dimens.spaceMedium)
                     )
                     Text("Sign In With VK", color = Color.Black)
                 }
             }
-            Spacer(Modifier.height(MaterialTheme.dimens.spaceExtraNahuyEptaLarge))
-            ClickableText(
-                text = annotatedString,
-                modifier = Modifier.width(300.dp),
-                style = TextStyle(textAlign = TextAlign.Center),
-                onClick = { offset ->
-                    annotatedString.getStringAnnotations(tag = "TERMS", start = offset, end = offset)
-                        .firstOrNull()?.let { annotation ->
-                            println("Клик по ссылке: ${annotation.item}")
-                        }
-                    annotatedString.getStringAnnotations(tag = "PRIVACY", start = offset, end = offset )
-                        .firstOrNull()?.let { annotation ->
-                            println("Клик по ссылке: ${annotation.item}")
-                        }
+Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+    Spacer(modifier = Modifier.weight(1F))
+    ClickableText(
+        text = annotatedString,
+        modifier = Modifier.width(300.dp).padding(bottom = 24.dp),
+        style = TextStyle(textAlign = TextAlign.Center),
+        onClick = { offset ->
+            annotatedString.getStringAnnotations(tag = "TERMS", start = offset, end = offset)
+                .firstOrNull()?.let { annotation ->
+                    println("Клик по ссылке: ${annotation.item}")
                 }
-            )
+            annotatedString.getStringAnnotations(tag = "PRIVACY", start = offset, end = offset)
+                .firstOrNull()?.let { annotation ->
+                    println("Клик по ссылке: ${annotation.item}")
+                }
+        }
+    )
+}
         }
     }
 }
