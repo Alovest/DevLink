@@ -7,6 +7,8 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import com.devlink.myapplication.app.ui.theme.colors.ColorOfBackgroundButtonDarkTheme
+import com.devlink.myapplication.app.ui.theme.colors.ColorOfBackgroundButtonLightTheme
 import com.devlink.myapplication.app.ui.theme.colors.ColorOfBorderContainerLightTheme
 import com.devlink.myapplication.app.ui.theme.colors.ColorOfBorderOfContainerDarkTheme
 import com.devlink.myapplication.app.ui.theme.colors.ColorOfButton
@@ -22,7 +24,8 @@ private val DarkColorScheme = darkColorScheme(
     onBackground = DarkThemeText,
     onSurface = GreyDarkThemeText,
     onSecondaryContainer = ColorOfBorderOfContainerDarkTheme,
-    primary = ColorOfButton
+    primary = ColorOfButton,
+    onPrimary = ColorOfBackgroundButtonDarkTheme
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -30,7 +33,8 @@ private val LightColorScheme = lightColorScheme(
     onBackground = LightThemeText,
     onSurface = GreyLightThemeText,
     onSecondaryContainer = ColorOfBorderContainerLightTheme,
-    primary = ColorOfButton
+    primary = ColorOfButton,
+    onPrimary = ColorOfBackgroundButtonLightTheme
 )
 
 val MaterialTheme.dimens: DevLinkDimensions

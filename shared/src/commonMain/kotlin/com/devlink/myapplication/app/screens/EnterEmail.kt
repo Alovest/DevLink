@@ -184,7 +184,7 @@ fun EnterEmail() {
                         .fillMaxWidth()
                         .height(55.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFE7E1D7)
+                        containerColor = MaterialTheme.colorScheme.onPrimary
                     ),
                     onClick = {
                         TODO()
