@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -40,21 +42,59 @@ import devlink.shared.generated.resources.arrow_back
 import devlink.shared.generated.resources.img
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
+import kotlin.collections.listOf
 
 @Composable
 fun TechStack(){
-    val options = remember {
+    val languages = remember {
         listOf(
-            "Grow my network",
-            "Find a co-founder",
-            "Find a job",
-            "Learn & improve my skills",
-            "Build my own project",
-            "Join a project"
+            "Kotlin",
+            "Java",
+            "Python",
+            "C++",
+            "C#",
+            "Go",
+            "Rust",
+            "Swift",
+            "C",
+            "JavaScript",
+            "TypeScript",
+            "Dart",
+            "PHP"
+        )
+    }
+    val technologies = remember {
+        listOf(
+            "Jetpack Compose",
+            "Ktor",
+            "Android",
+            "Spring",
+            "React",
+            "Flutter",
+            "Git",
+            "PostgreSQL",
+            ".NET",
+            "Unity",
+            "Docker",
+            "Node.js",
+            "Firebase",
+            "AWS"
+        )
+    }
+    val interests = remember {
+        listOf(
+            "Mobile",
+            "Backend",
+            "Frontend",
+            "Game Dev",
+            "AI",
+            "Full Stack",
+            "Data Science",
+            "Embedded"
         )
     }
     val selectedOptions = remember { mutableStateSetOf<String>() }
-
+    val scrollState = rememberScrollState()
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -84,30 +124,92 @@ fun TechStack(){
         Text(
             text = "What do you build with?",
             color = MaterialTheme.colorScheme.onBackground,
-            fontSize = 20.sp)
+            fontSize = 20.sp
+        )
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
         Text(
             text = "Select the technologies you use or want to work with.",
             fontSize = 15.sp,
-            color = MaterialTheme.colorScheme.onSurface)
+            color = MaterialTheme.colorScheme.onSurface
+        )
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
-        FlowRow(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
-        ) {
-            options.forEach { optionText ->
-                SelectableChipTeckStack(
-                    text = optionText,
-                    isSelected = selectedOptions.contains(optionText),
-                    onClick = {
-                        if (selectedOptions.contains(optionText)) {
-                            selectedOptions.remove(optionText)
-                        } else {
-                            selectedOptions.add(optionText)
+        Column(modifier = Modifier.verticalScroll(scrollState)) {
+            Text(
+                text = "Languages",
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
+            ) {
+                languages.forEach { optionText ->
+                    SelectableChipTeckStack(
+                        text = optionText,
+                        isSelected = selectedOptions.contains(optionText),
+                        onClick = {
+                            if (selectedOptions.contains(optionText)) {
+                                selectedOptions.remove(optionText)
+                            } else {
+                                selectedOptions.add(optionText)
+                            }
                         }
-                    }
-                )
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+            Text(
+                text = "Technologies",
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
+            ) {
+                technologies.forEach { optionText ->
+                    SelectableChipTeckStack(
+                        text = optionText,
+                        isSelected = selectedOptions.contains(optionText),
+                        onClick = {
+                            if (selectedOptions.contains(optionText)) {
+                                selectedOptions.remove(optionText)
+                            } else {
+                                selectedOptions.add(optionText)
+                            }
+                        }
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+            Text(
+                text = "Interests/Fields",
+                fontSize = 16.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
+                verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
+            ) {
+                interests.forEach { optionText ->
+                    SelectableChipTeckStack(
+                        text = optionText,
+                        isSelected = selectedOptions.contains(optionText),
+                        onClick = {
+                            if (selectedOptions.contains(optionText)) {
+                                selectedOptions.remove(optionText)
+                            } else {
+                                selectedOptions.add(optionText)
+                            }
+                        }
+                    )
+                }
             }
         }
         Spacer(modifier = Modifier.weight(1F))
