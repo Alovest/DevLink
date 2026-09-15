@@ -192,7 +192,7 @@ fun SelectableChip(
         color = if(isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background,
         modifier = Modifier.clickable(onClick = onClick).height(48.dp),
         border = if (isSelected) null else BorderStroke(1.dp, Color(0xFF5555550)),
-        shadowElevation = 1.dp
+        shadowElevation = 3.dp
     ){
         Row(
             modifier = Modifier
