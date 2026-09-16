@@ -16,7 +16,7 @@ val ColorOfBorderContainerLightTheme = Color(0x686868)
 
 val ColorOfBorderOfContainerDarkTheme = Color(0x8B8B8B)
 
-val ColorOfButton = Color(0x6B52DD)
+val ColorOfButton = Color(0xFF6B52DD)
 
 val ColorOfBackgroundButtonLightTheme = Color(0xFFE5E5E5)
 
