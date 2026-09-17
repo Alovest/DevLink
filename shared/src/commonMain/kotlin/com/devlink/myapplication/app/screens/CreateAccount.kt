@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,32 +30,26 @@ import androidx.compose.runtime.mutableStateSetOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
+import devlink.shared.generated.resources.add_image
 import devlink.shared.generated.resources.arrow_back
 import devlink.shared.generated.resources.img
+import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun CreateAccount(){
-    val options = remember {
-        listOf(
-            "Grow my network",
-            "Find a co-founder",
-            "Find a job",
-            "Learn & improve my skills",
-            "Build my own project",
-            "Join a project"
-        )
-    }
-    val selectedOptions = remember { mutableStateSetOf<String>() }
-
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -86,26 +81,10 @@ fun CreateAccount(){
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 20.sp)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+        AvatarPicker(onClick = {
+            TODO()
+        })
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
-        FlowRow(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
-            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
-        ) {
-            options.forEach { optionText ->
-                SelectableChipCreateAccount(
-                    text = optionText,
-                    isSelected = selectedOptions.contains(optionText),
-                    onClick = {
-                        if (selectedOptions.contains(optionText)) {
-                            selectedOptions.remove(optionText)
-                        } else {
-                            selectedOptions.add(optionText)
-                        }
-                    }
-                )
-            }
-        }
         Spacer(modifier = Modifier.weight(1F))
         Column {
             Row(
@@ -130,10 +109,9 @@ fun CreateAccount(){
                         TODO()
                     },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
+                        containerColor = MaterialTheme.colorScheme.primary,
                     ),
                     shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
-                    enabled = selectedOptions.isNotEmpty(),
                     modifier = Modifier
                         .width(120.dp)
                         .height(56.dp)
@@ -142,7 +120,7 @@ fun CreateAccount(){
                 {
                     Text(text = "Create account",
                         fontSize = 15.sp,
-                        color = MaterialTheme.colorScheme.onBackground)
+                        color = Color.White)
                 }
             }
         }
@@ -191,6 +169,35 @@ fun SelectableChipCreateAccount(
     }
 }
 
+@Composable
+fun AvatarPicker(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit){
+    val stroke = Stroke(
+        width = 2f,
+        pathEffect = PathEffect.dashPathEffect(floatArrayOf(20f, 20f), 0f)
+    )
+    Box(
+        modifier = modifier
+            .size(150.dp)
+            .clip(CircleShape)
+            .clickable{ onClick() }
+            .drawBehind{
+                drawCircle(
+                    color = Color.Gray,
+                    style = stroke
+                )
+            },
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            bitmap = imageResource(Res.drawable.add_image),
+            contentDescription = "Add Avatar",
+            modifier = modifier.size(40.dp)
+        )
+    }
+
+}
 
 @Composable
 @Preview
