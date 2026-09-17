@@ -3,6 +3,7 @@ package com.devlink.myapplication.app.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -25,13 +26,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableStateSetOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.PathEffect
@@ -50,6 +57,7 @@ import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun CreateAccount(){
+    var inputUsername by remember { mutableStateOf("") }
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -80,11 +88,43 @@ fun CreateAccount(){
             text = "Create your DevLink account",
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 20.sp)
-        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
-        AvatarPicker(onClick = {
-            TODO()
-        })
-        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceExtraLarge))
+        Row(modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center) {
+            AvatarPicker(onClick = {
+                TODO()
+            })
+        }
+        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceExtraLarge))
+        Column {
+            Text(
+                text = "Username",
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            TextField(
+                value = inputUsername,
+                onValueChange = {inputUsername = it},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(
+                        1.dp,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ),
+                placeholder = {
+                    Text(
+                        text = "Enter your username",
+                        color = MaterialTheme.colorScheme.onSurface
+                    ) },
+                shape = RoundedCornerShape(8.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent,
+                    errorIndicatorColor = Color.Transparent
+                )
+            )
+        }
         Spacer(modifier = Modifier.weight(1F))
         Column {
             Row(
