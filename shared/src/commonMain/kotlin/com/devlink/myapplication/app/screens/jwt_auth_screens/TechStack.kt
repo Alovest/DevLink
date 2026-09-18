@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.screens
+package com.devlink.myapplication.app.screens.jwt_auth_screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.screens
+package com.devlink.myapplication.app.screens.jwt_auth_screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -42,16 +42,25 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
-fun Experience(){
+fun Interests(){
     val options = remember {
         listOf(
-            "Beginner",
-            "Junior",
-            "Middle",
-            "Senior",
-            "Lead",
-            "Student",
-            "No professional experience yet"
+            "Startups",
+            "Open Source",
+            "Mobile Apps",
+            "Web Development",
+            "Robotics",
+            "Game Development",
+            "Cybersecurity",
+            "AI & Machine Learning",
+            "Blockchain",
+            "Cloud Computing",
+            "Developer Tools",
+            "SaaS",
+            "FinTech",
+            "Eduction",
+            "Productivity",
+            "Hardware"
         )
     }
     val selectedOptions = remember { mutableStateSetOf<String>() }
@@ -83,12 +92,12 @@ fun Experience(){
         }
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
         Text(
-            text = "How experienced are you?",
+            text = "What are you interested in?",
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 20.sp)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
         Text(
-            text = "This helps us connect you with people at a similar \nor complementary level.",
+            text = "Pick the topics you'd like to explore, discuss, or build around.",
             fontSize = 15.sp,
             color = MaterialTheme.colorScheme.onSurface)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
@@ -98,7 +107,7 @@ fun Experience(){
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
         ) {
             options.forEach { optionText ->
-                SelectableChipOfExp(
+                SelectableChipOfInterests(
                     text = optionText,
                     isSelected = selectedOptions.contains(optionText),
                     onClick = {
@@ -123,7 +132,7 @@ fun Experience(){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Step 2 of 5",
+                    text = "Step 4 of 5",
                     color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.labelLarge
                 )
@@ -176,7 +185,7 @@ fun Experience(){
 }
 
 @Composable
-fun SelectableChipOfExp(
+fun SelectableChipOfInterests(
     text: String,
     isSelected: Boolean,
     onClick: () -> Unit
@@ -220,6 +229,6 @@ fun SelectableChipOfExp(
 
 @Composable
 @Preview
-fun ShowScreenExperience(){
-    Experience()
+fun ShowScreenInterests(){
+    Interests()
 }

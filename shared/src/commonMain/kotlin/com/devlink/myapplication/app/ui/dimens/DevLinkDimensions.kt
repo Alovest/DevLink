@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.ui.theme
+package com.devlink.myapplication.app.ui.dimens
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp

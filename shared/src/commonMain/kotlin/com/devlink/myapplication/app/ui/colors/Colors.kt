@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.ui.theme.colors
+package com.devlink.myapplication.app.ui.colors
 
 import androidx.compose.ui.graphics.Color
 

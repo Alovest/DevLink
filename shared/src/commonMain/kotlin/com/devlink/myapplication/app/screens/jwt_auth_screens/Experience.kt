@@ -1,9 +1,8 @@
-package com.devlink.myapplication.app.screens
+package com.devlink.myapplication.app.screens.jwt_auth_screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -18,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -26,38 +24,38 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.mutableStateSetOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.PathEffect
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
-import devlink.shared.generated.resources.add_image
 import devlink.shared.generated.resources.arrow_back
 import devlink.shared.generated.resources.img
-import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
-fun CreateAccount(){
-    var inputUsername by remember { mutableStateOf("") }
+fun Experience(){
+    val options = remember {
+        listOf(
+            "Beginner",
+            "Junior",
+            "Middle",
+            "Senior",
+            "Lead",
+            "Student",
+            "No professional experience yet"
+        )
+    }
+    val selectedOptions = remember { mutableStateSetOf<String>() }
+
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -85,45 +83,33 @@ fun CreateAccount(){
         }
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
         Text(
-            text = "Create your DevLink account",
+            text = "How experienced are you?",
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 20.sp)
-        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceExtraLarge))
-        Row(modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center) {
-            AvatarPicker(onClick = {
-                TODO()
-            })
-        }
-        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceExtraLarge))
-        Column {
-            Text(
-                text = "Username",
-                color = MaterialTheme.colorScheme.onBackground
-            )
-            TextField(
-                value = inputUsername,
-                onValueChange = {inputUsername = it},
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .border(
-                        1.dp,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                placeholder = {
-                    Text(
-                        text = "Enter your username",
-                        color = MaterialTheme.colorScheme.onSurface
-                    ) },
-                shape = RoundedCornerShape(8.dp),
-                colors = TextFieldDefaults.colors(
-                    focusedTextColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
-                    errorIndicatorColor = Color.Transparent
+        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+        Text(
+            text = "This helps us connect you with people at a similar \nor complementary level.",
+            fontSize = 15.sp,
+            color = MaterialTheme.colorScheme.onSurface)
+        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
+        ) {
+            options.forEach { optionText ->
+                SelectableChipOfExp(
+                    text = optionText,
+                    isSelected = selectedOptions.contains(optionText),
+                    onClick = {
+                        if (selectedOptions.contains(optionText)) {
+                            selectedOptions.remove(optionText)
+                        } else {
+                            selectedOptions.add(optionText)
+                        }
+                    }
                 )
-            )
+            }
         }
         Spacer(modifier = Modifier.weight(1F))
         Column {
@@ -137,7 +123,7 @@ fun CreateAccount(){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Last step",
+                    text = "Step 2 of 5",
                     color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.labelLarge
                 )
@@ -149,18 +135,40 @@ fun CreateAccount(){
                         TODO()
                     },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
+                        containerColor = MaterialTheme.colorScheme.primary
                     ),
                     shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
+                    enabled = selectedOptions.isNotEmpty(),
                     modifier = Modifier
                         .width(120.dp)
                         .height(56.dp)
                         .weight(1F)
                 )
                 {
-                    Text(text = "Create account",
+                    Text(text = "Skip",
                         fontSize = 15.sp,
-                        color = Color.White)
+                        color = MaterialTheme.colorScheme.onBackground)
+                }
+                Button(
+                    onClick = {
+                        TODO()
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    ),
+                    shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
+                    enabled = selectedOptions.isNotEmpty(),
+                    modifier = Modifier
+                        .width(120.dp)
+                        .height(56.dp)
+                        .weight(1F)
+                )
+                {
+                    Text(
+                        text = "Continue (${selectedOptions.size})",
+                        fontSize = 15.sp,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
             }
         }
@@ -168,7 +176,7 @@ fun CreateAccount(){
 }
 
 @Composable
-fun SelectableChipCreateAccount(
+fun SelectableChipOfExp(
     text: String,
     isSelected: Boolean,
     onClick: () -> Unit
@@ -209,38 +217,9 @@ fun SelectableChipCreateAccount(
     }
 }
 
-@Composable
-fun AvatarPicker(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit){
-    val stroke = Stroke(
-        width = 2f,
-        pathEffect = PathEffect.dashPathEffect(floatArrayOf(20f, 20f), 0f)
-    )
-    Box(
-        modifier = modifier
-            .size(150.dp)
-            .clip(CircleShape)
-            .clickable{ onClick() }
-            .drawBehind{
-                drawCircle(
-                    color = Color.Gray,
-                    style = stroke
-                )
-            },
-        contentAlignment = Alignment.Center
-    ) {
-        Icon(
-            bitmap = imageResource(Res.drawable.add_image),
-            contentDescription = "Add Avatar",
-            modifier = modifier.size(40.dp)
-        )
-    }
-
-}
 
 @Composable
 @Preview
-fun ShowScreenCreateAccount(){
-    CreateAccount()
+fun ShowScreenExperience(){
+    Experience()
 }

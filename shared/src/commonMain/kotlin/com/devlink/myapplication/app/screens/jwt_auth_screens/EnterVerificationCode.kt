@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.screens
+package com.devlink.myapplication.app.screens.jwt_auth_screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -44,7 +44,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,7 +52,6 @@ import androidx.compose.ui.unit.sp
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_back
-import devlink.shared.generated.resources.logo
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
