@@ -44,7 +44,7 @@ import kotlin.collections.mutableListOf
 
 @Composable
 fun FloatingBottomBar(
-    backStack: MutableList<Screen>
+    backStack: NavBackStack<NavKey>
 ) {
     val currentScreen = backStack.lastOrNull()
 
@@ -113,7 +113,7 @@ fun FloatingBottomBar(
 @Preview
 fun ShowFloatingBottomBarScreen(){
     val fakeList = remember {
-        mutableStateListOf<Screen>(Screen.VacancyScreen)
+        NavBackStack<NavKey>(Screen.VacancyScreen)
     }
     FloatingBottomBar(backStack = fakeList)
 }

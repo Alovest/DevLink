@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.devlink.myapplication.app.navigation.navgraph.MainNavigation
 import com.devlink.myapplication.app.ui.theme.DevLinkTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DevLinkTheme() {
-                App()
+                MainNavigation()
             }
         }
     }
