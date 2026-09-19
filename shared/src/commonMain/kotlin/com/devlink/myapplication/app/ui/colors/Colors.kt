@@ -8,16 +8,18 @@ val LightThemeText = Color(0xFF000000)
 val DarkBackground = Color(0xFF0B0B0B)
 val DarkThemeText = Color(0xFFFFFFFF)
 
-val GreyDarkThemeText = Color(0x8B8B8B)
+val GreyDarkThemeText = Color(0xFF8B8B8B)
 
 val GreyLightThemeText = Color(0x77AFAFAF)
 
-val ColorOfBorderContainerLightTheme = Color(0x686868)
+val ColorOfBorderContainerLightTheme = Color(0xFF686868)
 
-val ColorOfBorderOfContainerDarkTheme = Color(0x8B8B8B)
+val ColorOfBorderOfContainerDarkTheme = Color(0xFF8B8B8B)
 
 val ColorOfButton = Color(0xFF6B52DD)
 
 val ColorOfBackgroundButtonLightTheme = Color(0xFFE5E5E5)
 
 val ColorOfBackgroundButtonDarkTheme = Color(0xFF1C1C1C)
+
+val ColorOfBottomNavigation = Color(0xFF141315)

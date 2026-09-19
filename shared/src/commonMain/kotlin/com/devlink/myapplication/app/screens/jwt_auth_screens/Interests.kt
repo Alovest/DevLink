@@ -34,6 +34,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation3.runtime.rememberNavBackStack
+import com.devlink.myapplication.app.navigation.routes.Screen
+import com.devlink.myapplication.app.navigation.routes.navConfig
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_back
@@ -43,6 +46,7 @@ import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 fun Interests(){
+    val backStack = rememberNavBackStack(configuration = navConfig, Screen.InterestsScreen)
     val options = remember {
         listOf(
             "Startups",
@@ -79,7 +83,7 @@ fun Interests(){
                     interactionSource = remember { MutableInteractionSource() }
                 )
                 {
-                    TODO()
+                    backStack.add(Screen.TechStack)
                 }
         ) {
             Image(

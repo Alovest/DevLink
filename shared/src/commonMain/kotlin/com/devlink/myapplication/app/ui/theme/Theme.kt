@@ -11,6 +11,7 @@ import com.devlink.myapplication.app.ui.colors.ColorOfBackgroundButtonDarkTheme
 import com.devlink.myapplication.app.ui.colors.ColorOfBackgroundButtonLightTheme
 import com.devlink.myapplication.app.ui.colors.ColorOfBorderContainerLightTheme
 import com.devlink.myapplication.app.ui.colors.ColorOfBorderOfContainerDarkTheme
+import com.devlink.myapplication.app.ui.colors.ColorOfBottomNavigation
 import com.devlink.myapplication.app.ui.colors.ColorOfButton
 import com.devlink.myapplication.app.ui.colors.DarkBackground
 import com.devlink.myapplication.app.ui.colors.DarkThemeText
@@ -27,7 +28,8 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = GreyDarkThemeText,
     onSecondaryContainer = ColorOfBorderOfContainerDarkTheme,
     primary = ColorOfButton,
-    onPrimary = ColorOfBackgroundButtonDarkTheme
+    onPrimary = ColorOfBackgroundButtonDarkTheme,
+    onPrimaryContainer = ColorOfBottomNavigation
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -36,7 +38,8 @@ private val LightColorScheme = lightColorScheme(
     onSurface = GreyLightThemeText,
     onSecondaryContainer = ColorOfBorderContainerLightTheme,
     primary = ColorOfButton,
-    onPrimary = ColorOfBackgroundButtonLightTheme
+    onPrimary = ColorOfBackgroundButtonLightTheme,
+    onPrimaryContainer = ColorOfBottomNavigation
 )
 
 val MaterialTheme.dimens: DevLinkDimensions
