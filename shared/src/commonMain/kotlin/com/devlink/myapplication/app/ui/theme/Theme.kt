@@ -13,6 +13,7 @@ import com.devlink.myapplication.app.ui.colors.ColorOfBorderContainerLightTheme
 import com.devlink.myapplication.app.ui.colors.ColorOfBorderOfContainerDarkTheme
 import com.devlink.myapplication.app.ui.colors.ColorOfBottomNavigation
 import com.devlink.myapplication.app.ui.colors.ColorOfButton
+import com.devlink.myapplication.app.ui.colors.ColorOfContainerDarkTheme
 import com.devlink.myapplication.app.ui.colors.DarkBackground
 import com.devlink.myapplication.app.ui.colors.DarkThemeText
 import com.devlink.myapplication.app.ui.colors.GreyDarkThemeText
@@ -29,7 +30,8 @@ private val DarkColorScheme = darkColorScheme(
     onSecondaryContainer = ColorOfBorderOfContainerDarkTheme,
     primary = ColorOfButton,
     onPrimary = ColorOfBackgroundButtonDarkTheme,
-    onPrimaryContainer = ColorOfBottomNavigation
+    onPrimaryContainer = ColorOfBottomNavigation,
+    primaryContainer = ColorOfContainerDarkTheme
 )
 
 private val LightColorScheme = lightColorScheme(

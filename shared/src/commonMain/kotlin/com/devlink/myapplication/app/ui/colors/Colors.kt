@@ -23,3 +23,5 @@ val ColorOfBackgroundButtonLightTheme = Color(0xFFE5E5E5)
 val ColorOfBackgroundButtonDarkTheme = Color(0xFF1C1C1C)
 
 val ColorOfBottomNavigation = Color(0xFF141315)
+
+val ColorOfContainerDarkTheme = Color(0xFF1C1C1C)
