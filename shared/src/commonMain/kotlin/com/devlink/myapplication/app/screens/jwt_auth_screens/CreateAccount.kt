@@ -46,8 +46,9 @@ import androidx.compose.ui.unit.sp
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.add_image
-import devlink.shared.generated.resources.arrow_back
+import devlink.shared.generated.resources.arrow_left
 import devlink.shared.generated.resources.img
+import devlink.shared.generated.resources.plus
 import org.jetbrains.compose.resources.imageResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
@@ -55,7 +56,6 @@ import org.jetbrains.compose.resources.vectorResource
 @Composable
 fun CreateAccount(){
     var inputUsername by remember { mutableStateOf("") }
-    var inputPassword by remember { mutableStateOf("") }
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -74,7 +74,7 @@ fun CreateAccount(){
                 }
         ) {
             Image(
-                painter = painterResource(Res.drawable.arrow_back),
+                painter = painterResource(Res.drawable.arrow_left),
                 contentDescription = "back",
                 modifier = Modifier.size(28.dp),
                 colorFilter = ColorFilter
@@ -116,64 +116,12 @@ fun CreateAccount(){
                     ) },
                 shape = RoundedCornerShape(8.dp),
                 colors = TextFieldDefaults.colors(
-                    focusedTextColor = Color.Transparent,
+                    focusedTextColor = Color.White,
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent,
                     errorIndicatorColor = Color.Transparent
                 )
             )
-//            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
-//            Text(
-//                text = "Password",
-//                color = MaterialTheme.colorScheme.onBackground
-//            )
-//            TextField(
-//                value = inputPassword,
-//                onValueChange = {inputPassword = it},
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .border(
-//                        1.dp,
-//                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-//                        shape = RoundedCornerShape(8.dp)
-//                    ),
-//                placeholder = {
-//                    Text(
-//                        text = "Enter your password",
-//                        color = MaterialTheme.colorScheme.onSurface
-//                    ) },
-//                shape = RoundedCornerShape(8.dp),
-//                colors = TextFieldDefaults.colors(
-//                    focusedTextColor = Color.Transparent,
-//                    unfocusedIndicatorColor = Color.Transparent,
-//                    disabledIndicatorColor = Color.Transparent,
-//                    errorIndicatorColor = Color.Transparent
-//                )
-//            )
-//            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
-//            TextField(
-//                value = inputPassword,
-//                onValueChange = {inputPassword = it},
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .border(
-//                        1.dp,
-//                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-//                        shape = RoundedCornerShape(8.dp)
-//                    ),
-//                placeholder = {
-//                    Text(
-//                        text = "Confirm your password",
-//                        color = MaterialTheme.colorScheme.onSurface
-//                    ) },
-//                shape = RoundedCornerShape(8.dp),
-//                colors = TextFieldDefaults.colors(
-//                    focusedTextColor = Color.Transparent,
-//                    unfocusedIndicatorColor = Color.Transparent,
-//                    disabledIndicatorColor = Color.Transparent,
-//                    errorIndicatorColor = Color.Transparent
-//                )
-//            )
         }
         Spacer(modifier = Modifier.weight(1F))
         Column {
@@ -217,47 +165,7 @@ fun CreateAccount(){
     }
 }
 
-@Composable
-fun SelectableChipCreateAccount(
-    text: String,
-    isSelected: Boolean,
-    onClick: () -> Unit
-){
-    Surface(
-        shape = RoundedCornerShape(MaterialTheme.dimens.spaceMedium),
-        color = if(isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background,
-        modifier = Modifier.clickable(onClick = onClick).height(48.dp),
-        border = if (isSelected) null else BorderStroke(1.dp, Color(0xFF5555550)),
-        shadowElevation = 3.dp
-    ){
-        Row(
-            modifier = Modifier
-                .padding(
-                    horizontal = MaterialTheme.dimens.spaceLarge,
-                    vertical = MaterialTheme.dimens.spaceMedium
-                ),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = text,
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onBackground,
-                style = MaterialTheme.typography.bodyMedium
-            )
 
-            if (isSelected){
-                Spacer(modifier = Modifier.width(MaterialTheme.dimens.spaceMedium))
-                Icon(
-                    imageVector = vectorResource(Res.drawable.img),
-                    contentDescription = "Selected",
-                    tint = Color.White,
-                    modifier = Modifier.size(20.dp)
-                )
-            }
-        }
-    }
-}
 
 @Composable
 fun AvatarPicker(
@@ -281,13 +189,14 @@ fun AvatarPicker(
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            bitmap = imageResource(Res.drawable.add_image),
+            painter = painterResource(Res.drawable.plus),
             contentDescription = "Add Avatar",
-            modifier = modifier.size(40.dp)
+            modifier = modifier.size(48.dp)
         )
     }
-
 }
+
+
 
 @Composable
 @Preview

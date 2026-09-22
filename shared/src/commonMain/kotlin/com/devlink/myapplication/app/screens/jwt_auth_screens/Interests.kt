@@ -39,7 +39,7 @@ import com.devlink.myapplication.app.navigation.routes.Screen
 import com.devlink.myapplication.app.navigation.routes.navConfig
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
-import devlink.shared.generated.resources.arrow_back
+import devlink.shared.generated.resources.arrow_left
 import devlink.shared.generated.resources.img
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
@@ -87,7 +87,7 @@ fun Interests(){
                 }
         ) {
             Image(
-                painter = painterResource(Res.drawable.arrow_back),
+                painter = painterResource(Res.drawable.arrow_left),
                 contentDescription = "back",
                 modifier = Modifier.size(28.dp),
                 colorFilter = ColorFilter
