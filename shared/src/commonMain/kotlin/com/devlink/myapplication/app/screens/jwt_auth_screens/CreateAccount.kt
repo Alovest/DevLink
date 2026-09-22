@@ -55,6 +55,7 @@ import org.jetbrains.compose.resources.vectorResource
 @Composable
 fun CreateAccount(){
     var inputUsername by remember { mutableStateOf("") }
+    var inputPassword by remember { mutableStateOf("") }
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -121,6 +122,58 @@ fun CreateAccount(){
                     errorIndicatorColor = Color.Transparent
                 )
             )
+//            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+//            Text(
+//                text = "Password",
+//                color = MaterialTheme.colorScheme.onBackground
+//            )
+//            TextField(
+//                value = inputPassword,
+//                onValueChange = {inputPassword = it},
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .border(
+//                        1.dp,
+//                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+//                        shape = RoundedCornerShape(8.dp)
+//                    ),
+//                placeholder = {
+//                    Text(
+//                        text = "Enter your password",
+//                        color = MaterialTheme.colorScheme.onSurface
+//                    ) },
+//                shape = RoundedCornerShape(8.dp),
+//                colors = TextFieldDefaults.colors(
+//                    focusedTextColor = Color.Transparent,
+//                    unfocusedIndicatorColor = Color.Transparent,
+//                    disabledIndicatorColor = Color.Transparent,
+//                    errorIndicatorColor = Color.Transparent
+//                )
+//            )
+//            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+//            TextField(
+//                value = inputPassword,
+//                onValueChange = {inputPassword = it},
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .border(
+//                        1.dp,
+//                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+//                        shape = RoundedCornerShape(8.dp)
+//                    ),
+//                placeholder = {
+//                    Text(
+//                        text = "Confirm your password",
+//                        color = MaterialTheme.colorScheme.onSurface
+//                    ) },
+//                shape = RoundedCornerShape(8.dp),
+//                colors = TextFieldDefaults.colors(
+//                    focusedTextColor = Color.Transparent,
+//                    unfocusedIndicatorColor = Color.Transparent,
+//                    disabledIndicatorColor = Color.Transparent,
+//                    errorIndicatorColor = Color.Transparent
+//                )
+//            )
         }
         Spacer(modifier = Modifier.weight(1F))
         Column {

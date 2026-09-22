@@ -50,6 +50,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun EnterEmail() {
     var inputEmail by remember { mutableStateOf("") }
+    var inputPassword by remember { mutableStateOf("") }
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground, fontSize = 14.sp)) {
             append("By signing up, you agree to our ")
@@ -137,6 +138,34 @@ fun EnterEmail() {
                         errorIndicatorColor = Color.Transparent
                     )
                 )
+                Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
+                Text(
+                text = "Password",
+                color = MaterialTheme.colorScheme.onBackground
+            )
+            TextField(
+                value = inputPassword,
+                onValueChange = {inputPassword = it},
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(
+                        1.dp,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ),
+                placeholder = {
+                    Text(
+                        text = "Enter your password",
+                        color = MaterialTheme.colorScheme.onSurface
+                    ) },
+                shape = RoundedCornerShape(8.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedTextColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent,
+                    errorIndicatorColor = Color.Transparent
+                )
+            )
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
                 Button(
                     modifier = Modifier
