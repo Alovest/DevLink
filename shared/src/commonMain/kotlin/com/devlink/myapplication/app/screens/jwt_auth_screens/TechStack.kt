@@ -36,6 +36,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import com.devlink.myapplication.app.navigation.routes.Screen
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_left
@@ -45,7 +48,7 @@ import org.jetbrains.compose.resources.vectorResource
 import kotlin.collections.listOf
 
 @Composable
-fun TechStack(){
+fun TechStack(backStack: NavBackStack<NavKey>){
     val languages = remember {
         listOf(
             "Kotlin",
@@ -109,7 +112,7 @@ fun TechStack(){
                     interactionSource = remember { MutableInteractionSource() }
                 )
                 {
-                    TODO()
+                    backStack.add(Screen.Experience)
                 }
         ) {
             Image(
@@ -322,5 +325,6 @@ fun SelectableChipTeckStack(
 @Composable
 @Preview
 fun ShowScreenTechStack(){
-    TechStack()
+    val backStack =  NavBackStack<NavKey>(Screen.TechStack)
+    TechStack(backStack = backStack)
 }

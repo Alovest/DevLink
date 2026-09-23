@@ -34,6 +34,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import com.devlink.myapplication.app.navigation.routes.Screen
 import com.devlink.myapplication.app.navigation.routes.navConfig
@@ -45,8 +47,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
-fun Interests(){
-    val backStack = rememberNavBackStack(configuration = navConfig, Screen.InterestsScreen)
+fun Interests(backStack: NavBackStack<NavKey>){
     val options = remember {
         listOf(
             "Startups",
@@ -234,5 +235,6 @@ fun SelectableChipOfInterests(
 @Composable
 @Preview
 fun ShowScreenInterests(){
-    Interests()
+    val backStack = NavBackStack<NavKey>(Screen.InterestsScreen)
+    Interests(backStack)
 }

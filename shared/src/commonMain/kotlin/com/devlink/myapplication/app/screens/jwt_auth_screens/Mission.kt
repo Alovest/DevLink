@@ -34,6 +34,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import com.devlink.myapplication.app.navigation.routes.Screen
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_left
@@ -44,7 +47,7 @@ import kotlin.collections.listOf
 
 
 @Composable
-fun Mission(){
+fun Mission(backStack: NavBackStack<NavKey>){
     val options = remember {
         listOf(
             "Grow my network",
@@ -65,13 +68,13 @@ fun Mission(){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(48.dp)
+                .height(48.dp)
                 .clickable(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() }
                 )
                 {
-                    TODO()
+                    backStack.add(Screen.EnterVerificationCode)
                 }
         ) {
             Image(
@@ -176,6 +179,7 @@ fun Mission(){
     }
 }
 
+
 @Composable
 fun SelectableChip(
     text: String,
@@ -222,5 +226,6 @@ fun SelectableChip(
 @Composable
 @Preview
 fun ShowScreenMission(){
-    Mission()
+    val backStack = NavBackStack<NavKey>(Screen.Mission)
+    Mission(backStack = backStack)
 }

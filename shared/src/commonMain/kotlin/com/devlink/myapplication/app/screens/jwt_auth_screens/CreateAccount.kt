@@ -43,6 +43,9 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import com.devlink.myapplication.app.navigation.routes.Screen
 import com.devlink.myapplication.app.ui.theme.dimens
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.add_image
@@ -54,7 +57,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.vectorResource
 
 @Composable
-fun CreateAccount(){
+fun CreateAccount(backStack: NavBackStack<NavKey>){
     var inputUsername by remember { mutableStateOf("") }
     Column(modifier = Modifier
         .fillMaxSize()
@@ -64,13 +67,13 @@ fun CreateAccount(){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(48.dp)
+                .height(48.dp)
                 .clickable(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() }
                 )
                 {
-                    TODO()
+                    backStack.add(Screen.InterestsScreen)
                 }
         ) {
             Image(
@@ -201,5 +204,6 @@ fun AvatarPicker(
 @Composable
 @Preview
 fun ShowScreenCreateAccount(){
-    CreateAccount()
+    val backStack = NavBackStack<NavKey>(Screen.CreateAccount)
+    CreateAccount(backStack)
 }
