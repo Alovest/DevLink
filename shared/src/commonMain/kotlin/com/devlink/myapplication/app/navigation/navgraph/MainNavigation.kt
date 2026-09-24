@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import com.devlink.myapplication.app.di.appModules
+import com.devlink.myapplication.app.di.presentationModule
 import com.devlink.myapplication.app.navigation.custom_bottom_navigation.FloatingBottomBar
 import com.devlink.myapplication.app.navigation.routes.Screen
 import com.devlink.myapplication.app.navigation.routes.navConfig
@@ -16,48 +18,56 @@ import com.devlink.myapplication.app.screens.main_screens.chat_screen.ChatScreen
 import com.devlink.myapplication.app.screens.main_screens.vacancy_screen.VacancyScreen
 import com.devlink.myapplication.app.screens.main_screens.profile_screen.ProfileScreen
 import com.devlink.myapplication.app.screens.main_screens.tasks_project_screen.LeadProjectScreen
+import com.devlink.myapplication.di.data.dataModule
+import com.devlink.myapplication.di.domain.domainModule
+import org.koin.compose.KoinApplication
+import org.koin.core.KoinApplication
 
 @Composable
 fun MainNavigation() {
-    val backStack = rememberNavBackStack(
-        navConfig,
-        Screen.VacancyScreen
+    KoinApplication(application = {
+        modules(appModules)
+    }) {
+        val backStack = rememberNavBackStack(
+            navConfig,
+            Screen.VacancyScreen
         )
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        bottomBar = {
-            FloatingBottomBar(backStack = backStack)
-        },
-        containerColor = MaterialTheme.colorScheme.background
-    ) { innerPadding ->
-        NavDisplay(
-            backStack = backStack,
-            modifier = Modifier.padding(innerPadding),
-            onBack = {
-                if (backStack.size > 1){
-                    backStack.removeLastOrNull()
-                }
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            bottomBar = {
+                FloatingBottomBar(backStack = backStack)
             },
-            entryProvider = entryProvider {
-                entry<Screen.VacancyScreen> {
-                    VacancyScreen()
+            containerColor = MaterialTheme.colorScheme.background
+        ) { innerPadding ->
+            NavDisplay(
+                backStack = backStack,
+                modifier = Modifier.padding(innerPadding),
+                onBack = {
+                    if (backStack.size > 1) {
+                        backStack.removeLastOrNull()
+                    }
+                },
+                entryProvider = entryProvider {
+                    entry<Screen.VacancyScreen> {
+                        VacancyScreen()
+                    }
+
+                    entry<Screen.ChatScreen> {
+                        ChatScreen()
+                    }
+
+                    entry<Screen.LeadProjectScreen> {
+                        LeadProjectScreen()
+                    }
+
+                    entry<Screen.ProfileScreen> {
+                        ProfileScreen()
+                    }
+
                 }
+            )
 
-                entry<Screen.ChatScreen> {
-                    ChatScreen()
-                }
-
-                entry<Screen.LeadProjectScreen> {
-                    LeadProjectScreen()
-                }
-
-                entry<Screen.ProfileScreen> {
-                    ProfileScreen()
-                }
-
-            }
-        )
-
+        }
     }
 }
