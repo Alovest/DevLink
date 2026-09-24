@@ -45,6 +45,8 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
             implementation("io.insert-koin:koin-android")
+            implementation("io.ktor:ktor-client-okhttp:3.0.0")
+
         }
         commonMain.dependencies {
             implementation(libs.kotlinx.serialization.json)
@@ -63,10 +65,22 @@ kotlin {
             implementation("io.insert-koin:koin-core")
             implementation("io.insert-koin:koin-compose")
             implementation("io.insert-koin:koin-compose-viewmodel")
+            //ktor
+            implementation("io.ktor:ktor-client-core:3.0.0")
+            implementation("io.ktor:ktor-client-content-negotiation:3.0.0")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0")
+            implementation("io.ktor:ktor-client-logging:3.0.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation("io.insert-koin:koin-test")
+            implementation("io.ktor:ktor-client-mock:3.0.0")
+            implementation(kotlin("test"))
+        }
+        val iosMain by creating{
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:3.0.0")
+            }
         }
     }
 }
