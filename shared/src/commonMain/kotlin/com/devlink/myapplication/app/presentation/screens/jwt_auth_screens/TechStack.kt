@@ -214,68 +214,128 @@ fun TechStack(backStack: NavBackStack<NavKey>){
                     )
                 }
             }
-        }
-        Spacer(modifier = Modifier.weight(1F))
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        vertical = MaterialTheme.dimens.spaceLarge
-                    ),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Step 3 of 5",
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.labelLarge
-                )
-            }
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
-                Button(
-                    onClick = {
-                        backStack.add(Screen.InterestsScreen)
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
-                    ),
-                    shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
-                    enabled = selectedOptions.isNotEmpty(),
+            Spacer(modifier = Modifier.weight(1F))
+            Column {
+                Row(
                     modifier = Modifier
-                        .width(120.dp)
-                        .height(56.dp)
-                        .weight(1F)
-                )
-                {
-                    Text(text = "Skip",
-                        fontSize = 15.sp,
-                        color = MaterialTheme.colorScheme.onBackground)
-                }
-                Button(
-                    onClick = {
-                        backStack.add(Screen.InterestsScreen)
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
-                    ),
-                    shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
-                    enabled = selectedOptions.isNotEmpty(),
-                    modifier = Modifier
-                        .width(120.dp)
-                        .height(56.dp)
-                        .weight(1F)
-                )
-                {
+                        .fillMaxWidth()
+                        .padding(
+                            vertical = MaterialTheme.dimens.spaceLarge
+                        ),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
-                        text = "Continue (${selectedOptions.size})",
-                        fontSize = 15.sp,
-                        color = MaterialTheme.colorScheme.onBackground
+                        text = "Step 3 of 5",
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.labelLarge
                     )
                 }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
+                    Button(
+                        onClick = {
+                            backStack.add(Screen.InterestsScreen)
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary
+                        ),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
+                        modifier = Modifier
+                            .width(120.dp)
+                            .height(56.dp)
+                            .weight(1F)
+                    )
+                    {
+                        Text(text = "Skip",
+                            fontSize = 15.sp,
+                            color = MaterialTheme.colorScheme.onBackground)
+                    }
+                    Button(
+                        onClick = {
+                            backStack.add(Screen.InterestsScreen)
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.primary
+                        ),
+                        shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
+                        enabled = selectedOptions.isNotEmpty(),
+                        modifier = Modifier
+                            .width(120.dp)
+                            .height(56.dp)
+                            .weight(1F)
+                    )
+                    {
+                        Text(
+                            text = "Continue (${selectedOptions.size})",
+                            fontSize = 15.sp,
+                            color = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
+                }
             }
         }
+//        Spacer(modifier = Modifier.weight(1F))
+//        Column {
+//            Row(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(
+//                        vertical = MaterialTheme.dimens.spaceLarge
+//                    ),
+//                horizontalArrangement = Arrangement.SpaceBetween,
+//                verticalAlignment = Alignment.CenterVertically
+//            ) {
+//                Text(
+//                    text = "Step 3 of 5",
+//                    color = MaterialTheme.colorScheme.onSurface,
+//                    style = MaterialTheme.typography.labelLarge
+//                )
+//            }
+//            Row(
+//                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
+//                Button(
+//                    onClick = {
+//                        backStack.add(Screen.InterestsScreen)
+//                    },
+//                    colors = ButtonDefaults.buttonColors(
+//                        containerColor = MaterialTheme.colorScheme.primary
+//                    ),
+//                    shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
+//                    enabled = selectedOptions.isNotEmpty(),
+//                    modifier = Modifier
+//                        .width(120.dp)
+//                        .height(56.dp)
+//                        .weight(1F)
+//                )
+//                {
+//                    Text(text = "Skip",
+//                        fontSize = 15.sp,
+//                        color = MaterialTheme.colorScheme.onBackground)
+//                }
+//                Button(
+//                    onClick = {
+//                        backStack.add(Screen.InterestsScreen)
+//                    },
+//                    colors = ButtonDefaults.buttonColors(
+//                        containerColor = MaterialTheme.colorScheme.primary
+//                    ),
+//                    shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
+//                    enabled = selectedOptions.isNotEmpty(),
+//                    modifier = Modifier
+//                        .width(120.dp)
+//                        .height(56.dp)
+//                        .weight(1F)
+//                )
+//                {
+//                    Text(
+//                        text = "Continue (${selectedOptions.size})",
+//                        fontSize = 15.sp,
+//                        color = MaterialTheme.colorScheme.onBackground
+//                    )
+//                }
+//            }
+//        }
     }
 }
 
@@ -311,7 +371,7 @@ fun SelectableChipTeckStack(
             if (isSelected){
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spaceMedium))
                 Icon(
-                    imageVector = vectorResource(Res.drawable.img),
+                    painter = painterResource(Res.drawable.img),
                     contentDescription = "Selected",
                     tint = Color.White,
                     modifier = Modifier.size(20.dp)

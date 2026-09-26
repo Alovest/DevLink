@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -29,6 +31,7 @@ import androidx.compose.runtime.mutableStateSetOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusRestorer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
@@ -67,7 +70,7 @@ fun Interests(backStack: NavBackStack<NavKey>){
         )
     }
     val selectedOptions = remember { mutableStateSetOf<String>() }
-
+    val scrollState = rememberScrollState()
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -104,6 +107,7 @@ fun Interests(backStack: NavBackStack<NavKey>){
             fontSize = 15.sp,
             color = MaterialTheme.colorScheme.onSurface)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+        Column(modifier = Modifier.verticalScroll(scrollState)) {
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
@@ -141,7 +145,8 @@ fun Interests(backStack: NavBackStack<NavKey>){
                 )
             }
             Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
+            ) {
                 Button(
                     onClick = {
                         backStack.add(Screen.CreateAccount)
@@ -150,16 +155,17 @@ fun Interests(backStack: NavBackStack<NavKey>){
                         containerColor = MaterialTheme.colorScheme.primary
                     ),
                     shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
-                    enabled = selectedOptions.isNotEmpty(),
                     modifier = Modifier
                         .width(120.dp)
                         .height(56.dp)
                         .weight(1F)
                 )
                 {
-                    Text(text = "Skip",
+                    Text(
+                        text = "Skip",
                         fontSize = 15.sp,
-                        color = MaterialTheme.colorScheme.onBackground)
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
                 Button(
                     onClick = {
@@ -183,6 +189,7 @@ fun Interests(backStack: NavBackStack<NavKey>){
                     )
                 }
             }
+        }
         }
     }
 }
@@ -219,7 +226,7 @@ fun SelectableChipOfInterests(
             if (isSelected){
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spaceMedium))
                 Icon(
-                    imageVector = vectorResource(Res.drawable.img),
+                    painter = painterResource(Res.drawable.img),
                     contentDescription = "Selected",
                     tint = Color.White,
                     modifier = Modifier.size(20.dp)

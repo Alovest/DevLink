@@ -13,6 +13,13 @@ import com.devlink.myapplication.app.di.appModules
 import com.devlink.myapplication.app.presentation.navigation.custom_bottom_navigation.FloatingBottomBar
 import com.devlink.myapplication.app.presentation.navigation.routes.Screen
 import com.devlink.myapplication.app.presentation.navigation.routes.navConfig
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.CreateAccount
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.EnterEmail
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.EnterVerificationCode
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.Experience
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.Interests
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.Mission
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.TechStack
 import com.devlink.myapplication.app.presentation.screens.main_screens.chat_screen.ChatScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.vacancy_screen.VacancyScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.profile_screen.ProfileScreen
@@ -26,13 +33,16 @@ fun MainNavigation() {
     }) {
         val backStack = rememberNavBackStack(
             navConfig,
-            Screen.VacancyScreen
+            Screen.EnterEmail
         )
 
+        val currentScreen = backStack.lastOrNull()
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            bottomBar = {
+            bottomBar = { if (currentScreen is Screen.VacancyScreen ||
+                currentScreen is Screen.ChatScreen || currentScreen is Screen.LeadProjectScreen || currentScreen is Screen.ProfileScreen) {
                 FloatingBottomBar(backStack = backStack)
+            }
             },
             containerColor = MaterialTheme.colorScheme.background
         ) { innerPadding ->
@@ -45,6 +55,31 @@ fun MainNavigation() {
                     }
                 },
                 entryProvider = entryProvider {
+                    //Registers Screens:
+                    entry<Screen.TechStack> {
+                        TechStack(backStack)
+                    }
+                    entry<Screen.InterestsScreen> {
+                        Interests(backStack)
+                    }
+                    entry<Screen.Mission> {
+                        Mission(backStack)
+                    }
+                    entry<Screen.Experience> {
+                        Experience(backStack)
+                    }
+                    entry<Screen.CreateAccount> {
+                        CreateAccount(backStack)
+                    }
+                    entry<Screen.EnterVerificationCode> {
+                        EnterVerificationCode(backStack)
+                    }
+                    entry<Screen.EnterEmail> {
+                        EnterEmail(backStack)
+                    }
+                    //
+
+                    // Main Screens:
                     entry<Screen.VacancyScreen> {
                         VacancyScreen()
                     }
@@ -60,7 +95,7 @@ fun MainNavigation() {
                     entry<Screen.ProfileScreen> {
                         ProfileScreen()
                     }
-
+                    //
                 }
             )
 

@@ -104,7 +104,7 @@ fun EnterVerificationCode(backStack: NavBackStack<NavKey>){
                 contentDescription = "back",
                 modifier = Modifier.size(28.dp),
                 colorFilter = ColorFilter
-                    .tint(Color.Black)
+                    .tint(MaterialTheme.colorScheme.onBackground)
             )
         }
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceExtraNahuyLarge))

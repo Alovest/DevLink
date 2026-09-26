@@ -83,7 +83,7 @@ fun EnterEmail(backStack: NavBackStack<NavKey>) {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(140.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             Image(
                 painter = painterResource(Res.drawable.logo),
                 contentDescription = "logo",
@@ -135,7 +135,7 @@ fun EnterEmail(backStack: NavBackStack<NavKey>) {
                         ) },
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.colors(
-                        focusedTextColor = Color.Transparent,
+                        focusedTextColor = MaterialTheme.colorScheme.onBackground,
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent,
                         errorIndicatorColor = Color.Transparent
@@ -163,7 +163,7 @@ fun EnterEmail(backStack: NavBackStack<NavKey>) {
                     ) },
                 shape = RoundedCornerShape(8.dp),
                 colors = TextFieldDefaults.colors(
-                    focusedTextColor = Color.Transparent,
+                    focusedTextColor = MaterialTheme.colorScheme.onBackground,
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent,
                     errorIndicatorColor = Color.Transparent

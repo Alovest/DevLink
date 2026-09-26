@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.devlink.myapplication.app.presentation.navigation.navgraph.MainNavigation
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.EnterEmail
 import com.devlink.myapplication.app.presentation.ui.theme.DevLinkTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DevLinkTheme() {
-                MainNavigation()
+               MainNavigation()
             }
         }
     }

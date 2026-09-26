@@ -142,7 +142,6 @@ fun Mission(backStack: NavBackStack<NavKey>){
                         containerColor = MaterialTheme.colorScheme.primary
                     ),
                     shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
-                    enabled = selectedOptions.isNotEmpty(),
                     modifier = Modifier
                         .width(120.dp)
                         .height(56.dp)
@@ -212,7 +211,7 @@ fun SelectableChip(
             if (isSelected){
                 Spacer(modifier = Modifier.width(MaterialTheme.dimens.spaceMedium))
                 Icon(
-                    imageVector = vectorResource(Res.drawable.img),
+                    painter = painterResource(Res.drawable.img),
                     contentDescription = "Selected",
                     tint = Color.White,
                     modifier = Modifier.size(20.dp)

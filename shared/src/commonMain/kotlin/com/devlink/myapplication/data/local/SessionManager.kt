@@ -4,8 +4,8 @@ import com.russhwolf.settings.Settings
 
 class SessionManager(private val settings: Settings) {
     companion object {
-        private val KEY_ACCESS_TOKEN = "access token"
-        private val KEY_REFRESH_TOKEN = "refresh token"
+        private val KEY_ACCESS_TOKEN = "access_token"
+        private val KEY_REFRESH_TOKEN = "refresh_token"
     }
 
     fun saveTokens(accessToken: String, refreshToken: String){

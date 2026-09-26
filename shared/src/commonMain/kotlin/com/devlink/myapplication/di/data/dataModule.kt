@@ -1,6 +1,8 @@
 package com.devlink.myapplication.di.data
 
 import com.devlink.myapplication.data.local.SessionManager
+import com.devlink.myapplication.data.repository.AuthRepositoryImpl
+import com.devlink.myapplication.domain.repository.AuthRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.auth.Auth
@@ -36,5 +38,5 @@ val dataModule = module {
             }
         }
     }
-
+    single<AuthRepository> { AuthRepositoryImpl(get()) }
 }
