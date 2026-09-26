@@ -70,6 +70,8 @@ kotlin {
             implementation("io.ktor:ktor-client-content-negotiation:3.0.0")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0")
             implementation("io.ktor:ktor-client-logging:3.0.0")
+            //SharedPreference
+            implementation("com.russhwolf:multiplatform-settings:1.1.1")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

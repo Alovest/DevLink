@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.devlink.myapplication.app.navigation.navgraph.MainNavigation
-import com.devlink.myapplication.app.ui.theme.DevLinkTheme
+import com.devlink.myapplication.app.presentation.navigation.navgraph.MainNavigation
+import com.devlink.myapplication.app.presentation.ui.theme.DevLinkTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
