@@ -135,7 +135,7 @@ fun Experience(backStack: NavBackStack<NavKey>){
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
                 Button(
                     onClick = {
-                        TODO()
+                        backStack.add(Screen.TechStack)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -154,7 +154,7 @@ fun Experience(backStack: NavBackStack<NavKey>){
                 }
                 Button(
                     onClick = {
-                        TODO()
+                        backStack.add(Screen.TechStack)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary

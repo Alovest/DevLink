@@ -146,7 +146,7 @@ fun Interests(backStack: NavBackStack<NavKey>){
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
                 Button(
                     onClick = {
-                        TODO()
+                        backStack.add(Screen.CreateAccount)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -165,7 +165,7 @@ fun Interests(backStack: NavBackStack<NavKey>){
                 }
                 Button(
                     onClick = {
-                        TODO()
+                        backStack.add(Screen.CreateAccount)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary

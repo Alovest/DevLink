@@ -173,7 +173,7 @@ fun EnterVerificationCode(backStack: NavBackStack<NavKey>){
             ),
             shape = RoundedCornerShape(20.dp),
             onClick = {
-                TODO()
+                backStack.add(Screen.Mission)
             }) {
             Text(text = "Begin", fontFamily = FontFamily.Default, fontSize = 15.sp)
         }

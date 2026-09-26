@@ -147,7 +147,7 @@ fun CreateAccount(backStack: NavBackStack<NavKey>){
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
                 Button(
                     onClick = {
-                        TODO()
+                        backStack.add(Screen.VacancyScreen)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary,
