@@ -1,5 +1,14 @@
 package com.devlink.myapplication.app.presentation.navigation.navgraph
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -39,8 +48,13 @@ fun MainNavigation() {
         val currentScreen = backStack.lastOrNull()
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            bottomBar = { if (currentScreen is Screen.VacancyScreen ||
-                currentScreen is Screen.ChatScreen || currentScreen is Screen.LeadProjectScreen || currentScreen is Screen.ProfileScreen) {
+            bottomBar = {
+                if (
+                currentScreen is Screen.VacancyScreen ||
+                currentScreen is Screen.ChatScreen ||
+                currentScreen is Screen.LeadProjectScreen
+                || currentScreen is Screen.ProfileScreen
+                ) {
                 FloatingBottomBar(backStack = backStack)
             }
             },
@@ -54,51 +68,68 @@ fun MainNavigation() {
                         backStack.removeLastOrNull()
                     }
                 },
+                transitionSpec = {
+                    val fromRegister = isRegisterScreen(initialState.key)
+                    val toRegister = isRegisterScreen(targetState.key)
+
+                    if (fromRegister && toRegister) {
+                        slideIntoContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Start,
+                            animationSpec = tween(400)
+                        ) + fadeIn(tween(400)) togetherWith slideOutOfContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.Start,
+                            animationSpec = tween(400)
+                        ) + fadeOut(tween(400))
+                    } else {
+                        fadeIn(tween(300)) togetherWith fadeOut(tween(300))
+                    }
+                },
+                popTransitionSpec = {
+                    val fromRegister = isRegisterScreen(initialState.key)
+                    val toRegister = isRegisterScreen(targetState.key)
+
+                    if (fromRegister && toRegister) {
+                        slideIntoContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.End,
+                            animationSpec = tween(400)
+                        ) + fadeIn(tween(400)) togetherWith slideOutOfContainer(
+                            towards = AnimatedContentTransitionScope.SlideDirection.End,
+                            animationSpec = tween(400)
+                        ) + fadeOut(tween(400))
+                    } else {
+                        fadeIn(tween(300)) togetherWith fadeOut(tween(300))
+                    }
+                },
                 entryProvider = entryProvider {
-                    //Registers Screens:
-                    entry<Screen.TechStack> {
-                        TechStack(backStack)
-                    }
-                    entry<Screen.InterestsScreen> {
-                        Interests(backStack)
-                    }
-                    entry<Screen.Mission> {
-                        Mission(backStack)
-                    }
-                    entry<Screen.Experience> {
-                        Experience(backStack)
-                    }
-                    entry<Screen.CreateAccount> {
-                        CreateAccount(backStack)
-                    }
-                    entry<Screen.EnterVerificationCode> {
-                        EnterVerificationCode(backStack)
-                    }
-                    entry<Screen.EnterEmail> {
-                        EnterEmail(backStack)
-                    }
-                    //
+                    // Registers Screens:
+                    entry<Screen.TechStack> { TechStack(backStack) }
+                    entry<Screen.InterestsScreen> { Interests(backStack) }
+                    entry<Screen.Mission> { Mission(backStack) }
+                    entry<Screen.Experience> { Experience(backStack) }
+                    entry<Screen.CreateAccount> { CreateAccount(backStack) }
+                    entry<Screen.EnterVerificationCode> { EnterVerificationCode(backStack) }
+                    entry<Screen.EnterEmail> { EnterEmail(backStack) }
 
                     // Main Screens:
-                    entry<Screen.VacancyScreen> {
-                        VacancyScreen()
-                    }
-
-                    entry<Screen.ChatScreen> {
-                        ChatScreen()
-                    }
-
-                    entry<Screen.LeadProjectScreen> {
-                        LeadProjectScreen()
-                    }
-
-                    entry<Screen.ProfileScreen> {
-                        ProfileScreen()
-                    }
-                    //
+                    entry<Screen.VacancyScreen> { VacancyScreen() }
+                    entry<Screen.ChatScreen> { ChatScreen() }
+                    entry<Screen.LeadProjectScreen> { LeadProjectScreen() }
+                    entry<Screen.ProfileScreen> { ProfileScreen() }
                 }
             )
 
         }
     }
+}
+
+fun isRegisterScreen(key: Any?): Boolean {
+    val screen = key as? Screen?: return false
+     return screen is Screen.EnterEmail ||
+            screen is Screen.EnterVerificationCode ||
+             screen is Screen.Mission ||
+             screen is Screen.Experience ||
+             screen is Screen.TechStack ||
+             screen is Screen.CreateAccount ||
+             screen is Screen.InterestsScreen
+
 }

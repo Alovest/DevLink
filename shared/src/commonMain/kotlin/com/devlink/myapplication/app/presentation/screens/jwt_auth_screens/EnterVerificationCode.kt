@@ -60,7 +60,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun EnterVerificationCode(backStack: NavBackStack<NavKey>){
     val inputEmail by remember { mutableStateOf("soxxxxxx1@gmail.com") }
-    var otpValue by remember { mutableStateOf("111111") }
+    var otpValue by remember { mutableStateOf("") }
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground, fontSize = 14.sp)) {
             append("By signing up, you agree to our ")
@@ -224,7 +224,7 @@ fun OtpCell(
         Text(
             text = char?.toString() ?: "",
             style = MaterialTheme.typography.headlineSmall,
-            color = Color.Black
+            color = MaterialTheme.colorScheme.onBackground
         )
     }
 }
