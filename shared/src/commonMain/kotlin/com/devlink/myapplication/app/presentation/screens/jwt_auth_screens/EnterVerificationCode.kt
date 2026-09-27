@@ -168,6 +168,7 @@ fun EnterVerificationCode(backStack: NavBackStack<NavKey>){
                     start = MaterialTheme.dimens.spaceLarge,
                     end = MaterialTheme.dimens.spaceLarge
                 ),
+            enabled = otpValue.isNotEmpty(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary
             ),
