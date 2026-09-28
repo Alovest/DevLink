@@ -1,8 +1,8 @@
 package com.devlink.myapplication.app.presentation.uiState
 
 sealed class AuthState {
-    object Idle: AuthState()
-    object Loading: AuthState()
+    data object Idle: AuthState()
+    data object Loading: AuthState()
     data class Error(val msgError: String): AuthState()
-    object Success: AuthState()
+    data object Success: AuthState()
 }

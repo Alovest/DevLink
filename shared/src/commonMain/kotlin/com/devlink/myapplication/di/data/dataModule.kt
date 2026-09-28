@@ -1,8 +1,10 @@
 package com.devlink.myapplication.di.data
 
+import androidx.compose.ui.input.key.Key.Companion.Settings
 import com.devlink.myapplication.data.local.SessionManager
 import com.devlink.myapplication.data.repository.AuthRepositoryImpl
 import com.devlink.myapplication.domain.repository.AuthRepository
+import com.russhwolf.settings.Settings
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.auth.Auth
@@ -14,6 +16,9 @@ import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 val dataModule = module {
+    single<Settings> {
+       Settings()
+    }
     single { SessionManager(get()) }
     single {
         HttpClient{

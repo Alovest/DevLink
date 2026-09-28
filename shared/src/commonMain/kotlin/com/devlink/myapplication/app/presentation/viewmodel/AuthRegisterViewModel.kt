@@ -15,11 +15,11 @@ class AuthRegisterViewModel(
     private val usecase: AuthRegisterUsecase
 ): ViewModel() {
     var uiState by mutableStateOf<AuthState>(AuthState.Idle)
-    fun register(username: String, password: String, email: String) {
+    fun register(password: String, email: String) {
         viewModelScope.launch {
             uiState = AuthState.Loading
             try {
-                val response = usecase(username, password, email)
+                val response = usecase(email, password)
                 sessionManager.saveTokens(response.token, response.token)
                 uiState = AuthState.Success
             } catch (e: Exception) {

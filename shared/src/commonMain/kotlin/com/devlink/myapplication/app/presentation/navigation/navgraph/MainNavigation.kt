@@ -33,16 +33,26 @@ import com.devlink.myapplication.app.presentation.screens.main_screens.chat_scre
 import com.devlink.myapplication.app.presentation.screens.main_screens.vacancy_screen.VacancyScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.profile_screen.ProfileScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.tasks_project_screen.LeadProjectScreen
+import com.devlink.myapplication.app.presentation.uiState.AuthState
+import com.devlink.myapplication.app.presentation.viewmodel.AuthRegisterViewModel
 import org.koin.compose.KoinApplication
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun MainNavigation() {
     KoinApplication(application = {
         modules(appModules)
     }) {
+        val viewModel: AuthRegisterViewModel = koinViewModel()
+        val state = viewModel.uiState
+        val initialScreen = if (state is AuthState.Success) {
+            Screen.VacancyScreen
+        } else {
+            Screen.EnterEmail
+        }
         val backStack = rememberNavBackStack(
             navConfig,
-            Screen.EnterEmail
+            initialScreen
         )
 
         val currentScreen = backStack.lastOrNull()
@@ -108,7 +118,14 @@ fun MainNavigation() {
                     entry<Screen.Experience> { Experience(backStack) }
                     entry<Screen.CreateAccount> { CreateAccount(backStack) }
                     entry<Screen.EnterVerificationCode> { EnterVerificationCode(backStack) }
-                    entry<Screen.EnterEmail> { EnterEmail(backStack) }
+                    entry<Screen.EnterEmail> {
+                        EnterEmail(
+                            backStack,
+                            viewModel.uiState,
+                            onRegisterClick = {
+                                email, password ->
+                                viewModel.register(email, password)
+                            }) }
 
                     // Main Screens:
                     entry<Screen.VacancyScreen> { VacancyScreen() }

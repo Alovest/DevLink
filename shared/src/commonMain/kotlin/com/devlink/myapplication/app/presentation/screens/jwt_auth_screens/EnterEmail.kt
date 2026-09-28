@@ -45,13 +45,14 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.devlink.myapplication.app.presentation.navigation.routes.Screen
 import com.devlink.myapplication.app.presentation.ui.theme.dimens
+import com.devlink.myapplication.app.presentation.uiState.AuthState
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.logo
 import devlink.shared.generated.resources.vkkk
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun EnterEmail(backStack: NavBackStack<NavKey>) {
+fun EnterEmail(backStack: NavBackStack<NavKey>, state: AuthState, onRegisterClick: (String, String) -> Unit) {
     var inputEmail by remember { mutableStateOf("") }
     var inputPassword by remember { mutableStateOf("") }
     val annotatedString = buildAnnotatedString {
@@ -179,6 +180,7 @@ fun EnterEmail(backStack: NavBackStack<NavKey>) {
                     ),
                     shape = RoundedCornerShape(20.dp),
                     onClick = {
+                        onRegisterClick(inputEmail, inputPassword)
                         backStack.add(Screen.EnterVerificationCode)
                 }) {
                     Text(text = "Begin", fontFamily = FontFamily.Default, fontSize = 15.sp)
@@ -253,5 +255,5 @@ Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.Center
 @Preview
 fun ShowScreen(){
     val backStack = NavBackStack<NavKey>(Screen.EnterEmail)
-    EnterEmail(backStack)
+    EnterEmail(backStack, AuthState.Idle, onRegisterClick = { email, password ->})
 }

@@ -19,7 +19,6 @@ val presentationModule = module {
             get()
         )
     }
-
 }
 
 val appModules = listOf(presentationModule, dataModule, domainModule)
