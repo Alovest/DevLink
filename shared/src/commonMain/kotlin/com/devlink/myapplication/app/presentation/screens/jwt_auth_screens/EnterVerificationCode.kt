@@ -176,7 +176,7 @@ fun EnterVerificationCode(backStack: NavBackStack<NavKey>, email: String){
                     start = MaterialTheme.dimens.spaceLarge,
                     end = MaterialTheme.dimens.spaceLarge
                 ),
-            enabled = otpValue.isNotEmpty(),
+            enabled = otpValue.length == 6,
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary
             ),
@@ -226,7 +226,7 @@ fun OtpCell(
     val shape = RoundedCornerShape(8.dp)
 
     Box(
-        modifier = modifier.size(50.dp).border(width = borderWidht, color = borderColor, shape = shape)
+        modifier = modifier.size(50.dp).border(width = borderWidht, color =  borderColor, shape = shape)
             .background(MaterialTheme.colorScheme.background, shape = shape),
         contentAlignment = Alignment.Center
     ) {

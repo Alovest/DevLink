@@ -184,6 +184,7 @@ fun EnterEmail(
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
                     ),
+                    enabled = email.isNotEmpty() && inputPassword.isNotEmpty(),
                     shape = RoundedCornerShape(20.dp),
                     onClick = {
                         onRegisterClick(email, inputPassword)
