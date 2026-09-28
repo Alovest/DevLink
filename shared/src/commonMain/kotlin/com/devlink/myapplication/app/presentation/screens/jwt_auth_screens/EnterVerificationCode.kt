@@ -58,8 +58,8 @@ import devlink.shared.generated.resources.arrow_left
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun EnterVerificationCode(backStack: NavBackStack<NavKey>){
-    val inputEmail by remember { mutableStateOf("soxxxxxx1@gmail.com") }
+fun EnterVerificationCode(backStack: NavBackStack<NavKey>, email: String){
+
     var otpValue by remember { mutableStateOf("") }
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground, fontSize = 14.sp)) {
@@ -79,6 +79,14 @@ fun EnterVerificationCode(backStack: NavBackStack<NavKey>){
             append("Privacy Policy")
         }
         pop()
+    }
+
+    val emailText = buildAnnotatedString {
+        append("Please check your email ")
+        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)) {
+            append(email)
+        }
+        append(" (don't forget the spam folder) and enter the code we just sent you.")
     }
     Column(
         modifier = Modifier
@@ -128,7 +136,7 @@ fun EnterVerificationCode(backStack: NavBackStack<NavKey>){
                 )
         ) {
             Text(
-                text = "Please check your email ${inputEmail} (don't forget the spam folder) and enter the code we just sent you.",
+                text = emailText,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
                 fontSize = 15.sp
@@ -285,5 +293,8 @@ fun OtpTextField(
 @Preview
 fun ShowScreenEnterVerificationCode(){
     val backStack = NavBackStack<NavKey>(Screen.EnterVerificationCode)
-    EnterVerificationCode(backStack)
+    EnterVerificationCode(
+        backStack,
+        email = TODO()
+    )
 }

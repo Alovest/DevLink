@@ -52,8 +52,14 @@ import devlink.shared.generated.resources.vkkk
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun EnterEmail(backStack: NavBackStack<NavKey>, state: AuthState, onRegisterClick: (String, String) -> Unit) {
-    var inputEmail by remember { mutableStateOf("") }
+fun EnterEmail(
+    backStack: NavBackStack<NavKey>,
+    state: AuthState,
+    onRegisterClick: (String, String) -> Unit,
+    email: String,
+    updateEmail: (String) -> Unit)
+{
+    //var inputEmail by remember { mutableStateOf("") }
     var inputPassword by remember { mutableStateOf("") }
     val annotatedString = buildAnnotatedString {
         withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.onBackground, fontSize = 14.sp)) {
@@ -120,8 +126,8 @@ fun EnterEmail(backStack: NavBackStack<NavKey>, state: AuthState, onRegisterClic
                     color = MaterialTheme.colorScheme.onBackground
                 )
                 TextField(
-                    value = inputEmail,
-                    onValueChange = {inputEmail = it},
+                    value = email,
+                    onValueChange = updateEmail,
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
@@ -180,7 +186,7 @@ fun EnterEmail(backStack: NavBackStack<NavKey>, state: AuthState, onRegisterClic
                     ),
                     shape = RoundedCornerShape(20.dp),
                     onClick = {
-                        onRegisterClick(inputEmail, inputPassword)
+                        onRegisterClick(email, inputPassword)
                         backStack.add(Screen.EnterVerificationCode)
                 }) {
                     Text(text = "Begin", fontFamily = FontFamily.Default, fontSize = 15.sp)
@@ -255,5 +261,9 @@ Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.Center
 @Preview
 fun ShowScreen(){
     val backStack = NavBackStack<NavKey>(Screen.EnterEmail)
-    EnterEmail(backStack, AuthState.Idle, onRegisterClick = { email, password ->})
+    EnterEmail(
+        backStack, AuthState.Idle, onRegisterClick = { email, password -> },
+        email = TODO(),
+        updateEmail = TODO()
+    )
 }

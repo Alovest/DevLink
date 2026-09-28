@@ -14,6 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -44,6 +48,7 @@ fun MainNavigation() {
         modules(appModules)
     }) {
         val viewModel: AuthRegisterViewModel = koinViewModel()
+        var email by remember { mutableStateOf("") }
         val state = viewModel.uiState
         val initialScreen = if (state is AuthState.Success) {
             Screen.VacancyScreen
@@ -117,15 +122,22 @@ fun MainNavigation() {
                     entry<Screen.Mission> { Mission(backStack) }
                     entry<Screen.Experience> { Experience(backStack) }
                     entry<Screen.CreateAccount> { CreateAccount(backStack) }
-                    entry<Screen.EnterVerificationCode> { EnterVerificationCode(backStack) }
+                    entry<Screen.EnterVerificationCode> {
+                        EnterVerificationCode(
+                            backStack,
+                            email
+                        )
+                    }
                     entry<Screen.EnterEmail> {
                         EnterEmail(
                             backStack,
                             viewModel.uiState,
-                            onRegisterClick = {
-                                email, password ->
+                            onRegisterClick = { email, password ->
                                 viewModel.register(email, password)
-                            }) }
+                            },
+                            email = email,
+                            updateEmail = {email = it}
+                        ) }
 
                     // Main Screens:
                     entry<Screen.VacancyScreen> { VacancyScreen() }
