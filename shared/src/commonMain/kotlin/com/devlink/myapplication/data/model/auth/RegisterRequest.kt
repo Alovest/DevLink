@@ -1,4 +1,4 @@
-package com.devlink.myapplication.data.model
+package com.devlink.myapplication.data.model.auth
 
 import kotlinx.serialization.Serializable
 

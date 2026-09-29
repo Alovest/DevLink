@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.presentation.viewmodel
+package com.devlink.myapplication.app.presentation.viewmodel.auth
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devlink.myapplication.app.presentation.uiState.AuthState
 import com.devlink.myapplication.data.local.SessionManager
-import com.devlink.myapplication.domain.usecase.AuthRegisterPasswordAndEmailUsecase
-import com.devlink.myapplication.domain.usecase.AuthRegisterUsernameUsecase
+import com.devlink.myapplication.domain.usecase.auth.AuthRegisterPasswordAndEmailUsecase
+import com.devlink.myapplication.domain.usecase.auth.AuthRegisterUsernameUsecase
 import kotlinx.coroutines.launch
 
 class AuthRegisterViewModel(

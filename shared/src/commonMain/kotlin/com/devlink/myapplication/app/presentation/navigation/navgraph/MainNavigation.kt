@@ -1,13 +1,9 @@
 package com.devlink.myapplication.app.presentation.navigation.navgraph
 
 import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.ContentTransform
-import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -38,7 +34,7 @@ import com.devlink.myapplication.app.presentation.screens.main_screens.vacancy_s
 import com.devlink.myapplication.app.presentation.screens.main_screens.profile_screen.ProfileScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.tasks_project_screen.LeadProjectScreen
 import com.devlink.myapplication.app.presentation.uiState.AuthState
-import com.devlink.myapplication.app.presentation.viewmodel.AuthRegisterViewModel
+import com.devlink.myapplication.app.presentation.viewmodel.auth.AuthRegisterViewModel
 import org.koin.compose.KoinApplication
 import org.koin.compose.viewmodel.koinViewModel
 

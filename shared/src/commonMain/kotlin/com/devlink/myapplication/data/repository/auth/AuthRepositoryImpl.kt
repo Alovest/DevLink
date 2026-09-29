@@ -1,8 +1,8 @@
-package com.devlink.myapplication.data.repository
+package com.devlink.myapplication.data.repository.auth
 
-import com.devlink.myapplication.data.model.AuthResponse
-import com.devlink.myapplication.data.model.RegisterRequest
-import com.devlink.myapplication.domain.repository.AuthRepository
+import com.devlink.myapplication.data.model.auth.AuthResponse
+import com.devlink.myapplication.data.model.auth.RegisterRequest
+import com.devlink.myapplication.domain.repository.auth.AuthRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.post

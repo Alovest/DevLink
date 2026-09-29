@@ -1,6 +1,6 @@
-package com.devlink.myapplication.domain.repository
+package com.devlink.myapplication.domain.repository.auth
 
-import com.devlink.myapplication.data.model.AuthResponse
+import com.devlink.myapplication.data.model.auth.AuthResponse
 
 interface AuthRepository {
     suspend fun AuthRegisterPasswordAndEmail(email: String, password: String) : AuthResponse
