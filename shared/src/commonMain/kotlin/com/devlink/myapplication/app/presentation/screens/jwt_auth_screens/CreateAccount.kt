@@ -51,7 +51,7 @@ import devlink.shared.generated.resources.plus
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun CreateAccount(backStack: NavBackStack<NavKey>){
+fun CreateAccount(backStack: NavBackStack<NavKey>, onRegisterClick: (String) -> Unit){
     var inputUsername by remember { mutableStateOf("") }
     Column(modifier = Modifier
         .fillMaxSize()
@@ -142,6 +142,7 @@ fun CreateAccount(backStack: NavBackStack<NavKey>){
                 Button(
                     onClick = {
                         backStack.add(Screen.VacancyScreen)
+                        onRegisterClick(inputUsername)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary,
@@ -199,5 +200,8 @@ fun AvatarPicker(
 @Preview
 fun ShowScreenCreateAccount(){
     val backStack = NavBackStack<NavKey>(Screen.CreateAccount)
-    CreateAccount(backStack)
+    CreateAccount(
+        backStack,
+        onRegisterClick = TODO()
+    )
 }

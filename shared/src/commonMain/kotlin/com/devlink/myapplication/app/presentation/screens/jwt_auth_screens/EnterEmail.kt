@@ -187,7 +187,7 @@ fun EnterEmail(
                     enabled = email.isNotEmpty() && inputPassword.isNotEmpty(),
                     shape = RoundedCornerShape(20.dp),
                     onClick = {
-                        onRegisterClick(email, inputPassword)
+                        onRegisterClick(inputPassword, email)
                         backStack.add(Screen.EnterVerificationCode)
                 }) {
                     Text(text = "Begin", fontFamily = FontFamily.Default, fontSize = 15.sp)
@@ -233,7 +233,7 @@ fun EnterEmail(
                             .size(35.dp)
                             .padding(end = MaterialTheme.dimens.spaceMedium)
                     )
-                    Text("Sign In With VK", color = Color.Black)
+                    Text("Sign In With VK", color = MaterialTheme.colorScheme.onBackground)
                 }
             }
 Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {

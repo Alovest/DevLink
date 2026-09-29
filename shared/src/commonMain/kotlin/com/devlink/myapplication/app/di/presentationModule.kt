@@ -16,6 +16,7 @@ val presentationModule = module {
     viewModel{
         AuthRegisterViewModel(
             get(),
+            get(),
             get()
         )
     }

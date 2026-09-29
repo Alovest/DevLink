@@ -121,7 +121,14 @@ fun MainNavigation() {
                     entry<Screen.InterestsScreen> { Interests(backStack) }
                     entry<Screen.Mission> { Mission(backStack) }
                     entry<Screen.Experience> { Experience(backStack) }
-                    entry<Screen.CreateAccount> { CreateAccount(backStack) }
+                    entry<Screen.CreateAccount> {
+                        CreateAccount(
+                            backStack,
+                            onRegisterClick = { username ->
+                                viewModel.registerUsername(username)
+                            }
+                        )
+                    }
                     entry<Screen.EnterVerificationCode> {
                         EnterVerificationCode(
                             backStack,
@@ -132,8 +139,8 @@ fun MainNavigation() {
                         EnterEmail(
                             backStack,
                             viewModel.uiState,
-                            onRegisterClick = { email, password ->
-                                viewModel.register(email, password)
+                            onRegisterClick = { password, email ->
+                                viewModel.registerPasswordAndEmail(email, password)
                             },
                             email = email,
                             updateEmail = {email = it}

@@ -1,10 +1,19 @@
 package com.devlink.myapplication.di.domain
 
-import com.devlink.myapplication.data.repository.AuthRepositoryImpl
-import com.devlink.myapplication.domain.repository.AuthRepository
-import com.devlink.myapplication.domain.usecase.AuthRegisterUsecase
+import com.devlink.myapplication.domain.usecase.AuthRegisterPasswordAndEmailUsecase
+import com.devlink.myapplication.domain.usecase.AuthRegisterUsernameUsecase
 import org.koin.dsl.module
 
 val domainModule = module {
-    factory { AuthRegisterUsecase(get()) }
+    factory {
+        AuthRegisterPasswordAndEmailUsecase(
+            get()
+        )
+    }
+
+    factory {
+        AuthRegisterUsernameUsecase(
+            get()
+        )
+    }
 }

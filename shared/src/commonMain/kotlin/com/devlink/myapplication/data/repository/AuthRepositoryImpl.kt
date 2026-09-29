@@ -11,10 +11,17 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 
 class AuthRepositoryImpl(private val client: HttpClient): AuthRepository {
-    override suspend fun AuthRegister(email: String, password: String): AuthResponse {
+    override suspend fun AuthRegisterPasswordAndEmail(email: String, password: String): AuthResponse {
     return client.post("http://127.0.0.1:8080/user/register") {
             contentType(ContentType.Application.Json)
             setBody(RegisterRequest(email, password))
+        }.body()
+    }
+
+    override suspend fun AuthRegisterUsername(username: String): AuthResponse {
+        return client.post("http://127.0.0.1:8080/user/register") {
+            contentType(ContentType.Application.Json)
+            setBody(RegisterRequest(username))
         }.body()
     }
 }
