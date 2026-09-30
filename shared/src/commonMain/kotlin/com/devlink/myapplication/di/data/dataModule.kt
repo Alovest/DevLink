@@ -17,7 +17,13 @@ val dataModule = module {
     single<Settings> {
        Settings()
     }
-    single { SessionManager(get()) }
+
+    single {
+        SessionManager(
+            get()
+        )
+    }
+
     single {
         HttpClient{
             install(ContentNegotiation){
@@ -41,5 +47,10 @@ val dataModule = module {
             }
         }
     }
-    single<AuthRepository> { AuthRepositoryImpl(get()) }
+
+    single<AuthRepository> {
+        AuthRepositoryImpl(
+            get()
+        )
+    }
 }
