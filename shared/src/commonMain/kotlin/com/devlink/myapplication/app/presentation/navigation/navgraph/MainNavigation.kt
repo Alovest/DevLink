@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,15 +47,20 @@ fun MainNavigation() {
         val viewModel: AuthRegisterViewModel = koinViewModel()
         var email by remember { mutableStateOf("") }
         val state = viewModel.uiState
-        val initialScreen = if (state is AuthState.Success) {
-            Screen.VacancyScreen
-        } else {
-            Screen.EnterEmail
+        val initialScreen = remember {
+            if (state is AuthState.Success) Screen.VacancyScreen else Screen.EnterEmail
         }
         val backStack = rememberNavBackStack(
             navConfig,
             initialScreen
         )
+
+        LaunchedEffect(state) {
+            if (state is AuthState.Success) {
+                backStack.clear()
+                backStack.add(Screen.VacancyScreen)
+            }
+        }
 
         val currentScreen = backStack.lastOrNull()
         Scaffold(
@@ -63,8 +69,8 @@ fun MainNavigation() {
                 if (
                 currentScreen is Screen.VacancyScreen ||
                 currentScreen is Screen.ChatScreen ||
-                currentScreen is Screen.LeadProjectScreen
-                || currentScreen is Screen.ProfileScreen
+                currentScreen is Screen.LeadProjectScreen ||
+                currentScreen is Screen.ProfileScreen
                 ) {
                 FloatingBottomBar(backStack = backStack)
             }
