@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.presentation.uiState
+package com.devlink.myapplication.app.presentation.uiState.auth
 
 sealed class AuthState {
     data object Idle: AuthState()

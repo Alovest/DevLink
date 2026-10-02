@@ -34,7 +34,7 @@ import com.devlink.myapplication.app.presentation.screens.main_screens.chat_scre
 import com.devlink.myapplication.app.presentation.screens.main_screens.vacancy_screen.VacancyScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.profile_screen.ProfileScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.tasks_project_screen.LeadProjectScreen
-import com.devlink.myapplication.app.presentation.uiState.AuthState
+import com.devlink.myapplication.app.presentation.uiState.auth.AuthState
 import com.devlink.myapplication.app.presentation.viewmodel.auth.AuthRegisterViewModel
 import org.koin.compose.KoinApplication
 import org.koin.compose.viewmodel.koinViewModel

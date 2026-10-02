@@ -45,7 +45,7 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.devlink.myapplication.app.presentation.navigation.routes.Screen
 import com.devlink.myapplication.app.presentation.ui.theme.dimens
-import com.devlink.myapplication.app.presentation.uiState.AuthState
+import com.devlink.myapplication.app.presentation.uiState.auth.AuthState
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.logo
 import devlink.shared.generated.resources.vkkk

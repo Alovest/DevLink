@@ -14,6 +14,7 @@ import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 val dataModule = module {
+    // Save tokens:
     single<Settings> {
        Settings()
     }
@@ -23,7 +24,9 @@ val dataModule = module {
             get()
         )
     }
+    //
 
+    // Network:
     single {
         HttpClient{
             install(ContentNegotiation){
@@ -47,10 +50,13 @@ val dataModule = module {
             }
         }
     }
+    //
 
+    // Repositories
     single<AuthRepository> {
         AuthRepositoryImpl(
             get()
         )
     }
+    //
 }

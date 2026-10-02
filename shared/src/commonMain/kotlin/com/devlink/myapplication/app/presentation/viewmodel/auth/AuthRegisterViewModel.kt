@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devlink.myapplication.app.presentation.uiState.AuthState
+import com.devlink.myapplication.app.presentation.uiState.auth.AuthState
 import com.devlink.myapplication.data.local.SessionManager
 import com.devlink.myapplication.domain.usecase.auth.AuthRegisterPasswordAndEmailUsecase
 import com.devlink.myapplication.domain.usecase.auth.AuthRegisterUsernameUsecase
