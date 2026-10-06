@@ -23,7 +23,7 @@ import devlink.shared.generated.resources.logo
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun SplashScreen(){
+fun SplashScreen(onContinue: () -> Unit){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -70,5 +70,5 @@ fun SplashScreen(){
 @Composable
 @Preview
 fun ShowContent(){
-    SplashScreen()
+    //SplashScreen()
 }

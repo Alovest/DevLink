@@ -1,9 +1,12 @@
 package com.devlink.myapplication.app.presentation.navigation.navgraph
 
 import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.NavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -62,18 +66,19 @@ fun MainNavigation() {
             }
         }
 
-        val currentScreen = backStack.lastOrNull()
+        var activeRenderedScreen by remember { mutableStateOf<Screen?>(initialScreen) }
+
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             bottomBar = {
-                if (
-                currentScreen is Screen.VacancyScreen ||
-                currentScreen is Screen.ChatScreen ||
-                currentScreen is Screen.LeadProjectScreen ||
-                currentScreen is Screen.ProfileScreen
-                ) {
-                FloatingBottomBar(backStack = backStack)
-            }
+                val isBottomBarVisible = activeRenderedScreen is Screen.VacancyScreen ||
+                        activeRenderedScreen is Screen.ChatScreen ||
+                        activeRenderedScreen is Screen.LeadProjectScreen ||
+                        activeRenderedScreen is Screen.ProfileScreen
+
+                if (isBottomBarVisible) {
+                    FloatingBottomBar(backStack = backStack)
+                }
             },
             containerColor = MaterialTheme.colorScheme.background
         ) { innerPadding ->
@@ -85,45 +90,26 @@ fun MainNavigation() {
                         backStack.removeLastOrNull()
                     }
                 },
-                transitionSpec = {
-                    val fromRegister = isRegisterScreen(initialState.key)
-                    val toRegister = isRegisterScreen(targetState.key)
-
-                    if (fromRegister && toRegister) {
-                        slideIntoContainer(
-                            towards = AnimatedContentTransitionScope.SlideDirection.Start,
-                            animationSpec = tween(400)
-                        ) + fadeIn(tween(400)) togetherWith slideOutOfContainer(
-                            towards = AnimatedContentTransitionScope.SlideDirection.Start,
-                            animationSpec = tween(400)
-                        ) + fadeOut(tween(400))
-                    } else {
-                        fadeIn(tween(300)) togetherWith fadeOut(tween(300))
-                    }
-                },
-                popTransitionSpec = {
-                    val fromRegister = isRegisterScreen(initialState.key)
-                    val toRegister = isRegisterScreen(targetState.key)
-
-                    if (fromRegister && toRegister) {
-                        slideIntoContainer(
-                            towards = AnimatedContentTransitionScope.SlideDirection.End,
-                            animationSpec = tween(400)
-                        ) + fadeIn(tween(400)) togetherWith slideOutOfContainer(
-                            towards = AnimatedContentTransitionScope.SlideDirection.End,
-                            animationSpec = tween(400)
-                        ) + fadeOut(tween(400))
-                    } else {
-                        fadeIn(tween(300)) togetherWith fadeOut(tween(300))
-                    }
-                },
                 entryProvider = entryProvider {
-                    // Registers Screens:
-                    entry<Screen.TechStack> { TechStack(backStack) }
-                    entry<Screen.InterestsScreen> { Interests(backStack) }
-                    entry<Screen.Mission> { Mission(backStack) }
-                    entry<Screen.Experience> { Experience(backStack) }
+                    // Экраны регистрации:
+                    entry<Screen.TechStack> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.TechStack }
+                        TechStack(backStack)
+                    }
+                    entry<Screen.InterestsScreen> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.InterestsScreen }
+                        Interests(backStack)
+                    }
+                    entry<Screen.Mission> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.Mission }
+                        Mission(backStack)
+                    }
+                    entry<Screen.Experience> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.Experience }
+                        Experience(backStack)
+                    }
                     entry<Screen.CreateAccount> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.CreateAccount }
                         CreateAccount(
                             backStack,
                             onRegisterClick = { username ->
@@ -132,12 +118,14 @@ fun MainNavigation() {
                         )
                     }
                     entry<Screen.EnterVerificationCode> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.EnterVerificationCode }
                         EnterVerificationCode(
                             backStack,
                             email
                         )
                     }
                     entry<Screen.EnterEmail> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.EnterEmail }
                         EnterEmail(
                             backStack,
                             viewModel.uiState,
@@ -145,29 +133,29 @@ fun MainNavigation() {
                                 viewModel.registerPasswordAndEmail(email, password)
                             },
                             email = email,
-                            updateEmail = {email = it}
-                        ) }
+                            updateEmail = { email = it }
+                        )
+                    }
 
-                    // Main Screens:
-                    entry<Screen.VacancyScreen> { VacancyScreen() }
-                    entry<Screen.ChatScreen> { ChatScreen() }
-                    entry<Screen.LeadProjectScreen> { LeadProjectScreen() }
-                    entry<Screen.ProfileScreen> { ProfileScreen() }
+                    // Главные экраны:
+                    entry<Screen.VacancyScreen> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.VacancyScreen }
+                        VacancyScreen()
+                    }
+                    entry<Screen.ChatScreen> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.ChatScreen }
+                        ChatScreen()
+                    }
+                    entry<Screen.LeadProjectScreen> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.LeadProjectScreen }
+                        LeadProjectScreen()
+                    }
+                    entry<Screen.ProfileScreen> {
+                        LaunchedEffect(Unit) { activeRenderedScreen = Screen.ProfileScreen }
+                        ProfileScreen()
+                    }
                 }
             )
-
         }
     }
-}
-
-fun isRegisterScreen(key: Any?): Boolean {
-    val screen = key as? Screen?: return false
-     return screen is Screen.EnterEmail ||
-            screen is Screen.EnterVerificationCode ||
-             screen is Screen.Mission ||
-             screen is Screen.Experience ||
-             screen is Screen.TechStack ||
-             screen is Screen.CreateAccount ||
-             screen is Screen.InterestsScreen
-
 }

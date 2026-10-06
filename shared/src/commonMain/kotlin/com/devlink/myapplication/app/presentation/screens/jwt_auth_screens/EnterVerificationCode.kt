@@ -184,7 +184,12 @@ fun EnterVerificationCode(backStack: NavBackStack<NavKey>, email: String){
             onClick = {
                 backStack.add(Screen.Mission)
             }) {
-            Text(text = "Begin", fontFamily = FontFamily.Default, fontSize = 15.sp)
+            Text(
+                text = "Begin",
+                fontFamily = FontFamily.Default,
+                fontSize = 15.sp,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
         Column(modifier = Modifier.fillMaxSize().padding(bottom = 24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
             Spacer(modifier = Modifier.weight(1F))
@@ -237,53 +242,62 @@ fun OtpCell(
         )
     }
 }
-
 @Composable
 fun OtpTextField(
     modifier: Modifier = Modifier,
     otpText: String,
     otpLenght: Int = 6,
     onOtpTextChange: (String) -> Unit
-){
+) {
     val focusRequester = remember { FocusRequester() }
     val selection = TextRange(otpText.length)
-    BasicTextField(
-        value = TextFieldValue(text = otpText, selection = selection),
-        onValueChange = {
-            if (it.text.length <= otpLenght) {
-                val newText = it.text.filter { char -> char.isDigit() }
-                if (newText != otpText) {
-                    onOtpTextChange(newText)
-                }
-            }
-        },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
-        modifier = modifier
-            .size(0.dp)
-            .focusRequester(focusRequester),
-        decorationBox = { }
-    )
-    LaunchedEffect(Unit){
-        focusRequester.requestFocus()
-    }
 
-    Row(
+    Box(
         modifier = modifier.fillMaxWidth(),
-        Arrangement.Center
-        ){
-        repeat(otpLenght){ index ->
-            val char = otpText.getOrNull(index)
-            val isFocused = otpText.length == index
-
-            OtpCell(
-                char = char,
-                isFocused = isFocused,
-                modifier = modifier.clickable{
-                    focusRequester.requestFocus()
+        contentAlignment = Alignment.Center
+    ) {
+        BasicTextField(
+            value = TextFieldValue(text = otpText, selection = selection),
+            onValueChange = {
+                if (it.text.length <= otpLenght) {
+                    val newText = it.text.filter { char -> char.isDigit() }
+                    if (newText != otpText) {
+                        onOtpTextChange(newText)
+                    }
                 }
-            )
-            if (index < otpLenght - 1){
-                Spacer(modifier = modifier.width(8.dp))
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier
+                .matchParentSize()
+                .focusRequester(focusRequester),
+            decorationBox = { }
+        )
+
+        LaunchedEffect(Unit) {
+            focusRequester.requestFocus()
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            repeat(otpLenght) { index ->
+                val char = otpText.getOrNull(index)
+                val isFocused = otpText.length == index
+
+                OtpCell(
+                    char = char,
+                    isFocused = isFocused,
+                    modifier = Modifier.clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null
+                    ) {
+                        focusRequester.requestFocus()
+                    }
+                )
+                if (index < otpLenght - 1) {
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
             }
         }
     }

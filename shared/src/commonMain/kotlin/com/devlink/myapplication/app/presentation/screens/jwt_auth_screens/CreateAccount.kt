@@ -147,6 +147,7 @@ fun CreateAccount(backStack: NavBackStack<NavKey>, onRegisterClick: (String) -> 
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary,
                     ),
+                    enabled = inputUsername.isNotEmpty(),
                     shape = RoundedCornerShape(MaterialTheme.dimens.spaceLarge),
                     modifier = Modifier
                         .width(120.dp)

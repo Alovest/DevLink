@@ -46,6 +46,7 @@ kotlin {
             implementation(libs.compose.uiTooling)
             implementation("io.insert-koin:koin-android")
             implementation("io.ktor:ktor-client-okhttp:3.0.0")
+            implementation("androidx.core:core-splashscreen:1.0.1")
 
         }
         commonMain.dependencies {

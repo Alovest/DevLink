@@ -190,7 +190,11 @@ fun EnterEmail(
                         onRegisterClick(inputPassword, email)
                         backStack.add(Screen.EnterVerificationCode)
                 }) {
-                    Text(text = "Begin", fontFamily = FontFamily.Default, fontSize = 15.sp)
+                    Text(
+                        text = "Begin",
+                        fontFamily = FontFamily.Default,
+                        fontSize = 15.sp, color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
                 Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceExtraLarge))
                 Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
