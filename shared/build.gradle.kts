@@ -75,6 +75,11 @@ kotlin {
             //SharedPreference
            // implementation("com.russhwolf:multiplatform-settings:1.1.1")
             implementation("com.russhwolf:multiplatform-settings-no-arg:1.1.1")
+
+
+//            implementation("io.github.kyant0:backdrop:2.0.1")
+//            // Опционально: Для красивых плавных iOS-форм сквиркла
+//            implementation("io.github.kyant0:shapes:1.2.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

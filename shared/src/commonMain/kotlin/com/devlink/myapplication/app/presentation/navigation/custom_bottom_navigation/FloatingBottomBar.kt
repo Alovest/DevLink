@@ -24,6 +24,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.BlurredEdgeTreatment
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,27 +33,32 @@ import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.devlink.myapplication.app.presentation.navigation.routes.Screen
 import com.devlink.myapplication.app.presentation.ui.theme.dimens
+import org.jetbrains.compose.resources.painterResource
 import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.chat_screen
 import devlink.shared.generated.resources.lead_project_screen
 import devlink.shared.generated.resources.profile_screen
 import devlink.shared.generated.resources.vacancy_screen
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun FloatingBottomBar(
-    backStack: NavBackStack<NavKey>
+    backStack: NavBackStack<NavKey>,
 ) {
     val currentScreen = backStack.lastOrNull()
+    val barShape = RoundedCornerShape(34.dp)
 
-    Surface(
+    Box(
         modifier = Modifier
             .padding(horizontal = 28.dp, vertical = 24.dp)
             .fillMaxWidth()
-            .height(68.dp),
-        shape = RoundedCornerShape(34.dp),
-        color = Color(0xFF141315)
+            .height(68.dp)
     ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .blur(radius = 20.dp, edgeTreatment = BlurredEdgeTreatment(barShape))
+                .background(Color(0xFF141315).copy(alpha = 0.45f), barShape)
+        )
         Row(
             modifier = Modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.SpaceEvenly,
