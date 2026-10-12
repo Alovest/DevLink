@@ -1,13 +1,5 @@
 package com.devlink.myapplication.app.presentation.navigation.navgraph
 
-import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -19,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.navigation3.runtime.NavEntryDecorator
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -27,13 +18,13 @@ import com.devlink.myapplication.app.di.appModules
 import com.devlink.myapplication.app.presentation.navigation.custom_bottom_navigation.FloatingBottomBar
 import com.devlink.myapplication.app.presentation.navigation.routes.Screen
 import com.devlink.myapplication.app.presentation.navigation.routes.navConfig
-import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.CreateAccount
-import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.EnterEmail
-import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.EnterVerificationCode
-import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.Experience
-import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.Interests
-import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.Mission
-import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.TechStack
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.create_account.CreateAccount
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.enter_email.EnterEmail
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.enter_verification_code.EnterVerificationCode
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.experience.Experience
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.interests.Interests
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.mission.Mission
+import com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.tech_stack.TechStack
 import com.devlink.myapplication.app.presentation.screens.main_screens.chat_screen.ChatScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.vacancy_screen.VacancyScreen
 import com.devlink.myapplication.app.presentation.screens.main_screens.profile_screen.ProfileScreen

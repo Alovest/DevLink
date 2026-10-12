@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens
+package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.mission
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -42,19 +42,19 @@ import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_left
 import devlink.shared.generated.resources.img
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
+import kotlin.collections.listOf
+
 
 @Composable
-fun Experience(backStack: NavBackStack<NavKey>){
+fun Mission(backStack: NavBackStack<NavKey>){
     val options = remember {
         listOf(
-            "Beginner",
-            "Junior",
-            "Middle",
-            "Senior",
-            "Lead",
-            "Student",
-            "No professional experience yet"
+            "Grow my network",
+            "Find a co-founder",
+            "Find a job",
+            "Learn & improve my skills",
+            "Build my own project",
+            "Join a project"
         )
     }
     val selectedOptions = remember { mutableStateSetOf<String>() }
@@ -67,13 +67,13 @@ fun Experience(backStack: NavBackStack<NavKey>){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(48.dp)
+                .height(48.dp)
                 .clickable(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() }
                 )
                 {
-                    backStack.add(Screen.Mission)
+                    backStack.add(Screen.EnterVerificationCode)
                 }
         ) {
             Image(
@@ -86,22 +86,22 @@ fun Experience(backStack: NavBackStack<NavKey>){
         }
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
         Text(
-            text = "How experienced are you?",
-            color = MaterialTheme.colorScheme.onBackground,
-            fontSize = 20.sp)
+            text = "What brings you to DevLink?",
+             color = MaterialTheme.colorScheme.onBackground,
+             fontSize = 20.sp)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
         Text(
-            text = "This helps us connect you with people at a similar \nor complementary level.",
-            fontSize = 15.sp,
-            color = MaterialTheme.colorScheme.onSurface)
-        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+            text = "Tell us what you want to achieve. We'll \npersonalize your experience around your goals.",
+             fontSize = 15.sp,
+             color = MaterialTheme.colorScheme.onSurface)
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
         ) {
             options.forEach { optionText ->
-                SelectableChipOfExp(
+                SelectableChip(
                     text = optionText,
                     isSelected = selectedOptions.contains(optionText),
                     onClick = {
@@ -126,7 +126,7 @@ fun Experience(backStack: NavBackStack<NavKey>){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Step 2 of 5",
+                    text = "Step 1 of 5",
                     color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.labelLarge
                 )
@@ -135,7 +135,7 @@ fun Experience(backStack: NavBackStack<NavKey>){
                 horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
                 Button(
                     onClick = {
-                        backStack.add(Screen.TechStack)
+                        backStack.add(Screen.Experience)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -153,7 +153,7 @@ fun Experience(backStack: NavBackStack<NavKey>){
                 }
                 Button(
                     onClick = {
-                        backStack.add(Screen.TechStack)
+                        backStack.add(Screen.Experience)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -177,8 +177,9 @@ fun Experience(backStack: NavBackStack<NavKey>){
     }
 }
 
+
 @Composable
-fun SelectableChipOfExp(
+fun SelectableChip(
     text: String,
     isSelected: Boolean,
     onClick: () -> Unit
@@ -222,7 +223,7 @@ fun SelectableChipOfExp(
 
 @Composable
 @Preview
-fun ShowScreenExperience(){
-    val backStack = NavBackStack<NavKey>(Screen.Experience)
-    Experience(backStack)
+fun ShowScreenMission(){
+    val backStack = NavBackStack<NavKey>(Screen.Mission)
+    Mission(backStack = backStack)
 }

@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens
+package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.experience
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -17,9 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -31,7 +29,6 @@ import androidx.compose.runtime.mutableStateSetOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusRestorer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,32 +42,22 @@ import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_left
 import devlink.shared.generated.resources.img
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
-fun Interests(backStack: NavBackStack<NavKey>){
+fun Experience(backStack: NavBackStack<NavKey>){
     val options = remember {
         listOf(
-            "Startups",
-            "Open Source",
-            "Mobile Apps",
-            "Web Development",
-            "Robotics",
-            "Game Development",
-            "Cybersecurity",
-            "AI & Machine Learning",
-            "Blockchain",
-            "Cloud Computing",
-            "Developer Tools",
-            "SaaS",
-            "FinTech",
-            "Eduction",
-            "Productivity",
-            "Hardware"
+            "Beginner",
+            "Junior",
+            "Middle",
+            "Senior",
+            "Lead",
+            "Student",
+            "No professional experience yet"
         )
     }
     val selectedOptions = remember { mutableStateSetOf<String>() }
-    val scrollState = rememberScrollState()
+
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -85,7 +72,7 @@ fun Interests(backStack: NavBackStack<NavKey>){
                     interactionSource = remember { MutableInteractionSource() }
                 )
                 {
-                    backStack.add(Screen.TechStack)
+                    backStack.add(Screen.Mission)
                 }
         ) {
             Image(
@@ -98,23 +85,22 @@ fun Interests(backStack: NavBackStack<NavKey>){
         }
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
         Text(
-            text = "What are you interested in?",
+            text = "How experienced are you?",
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 20.sp)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
         Text(
-            text = "Pick the topics you'd like to explore, discuss, or build around.",
+            text = "This helps us connect you with people at a similar \nor complementary level.",
             fontSize = 15.sp,
             color = MaterialTheme.colorScheme.onSurface)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
-        Column(modifier = Modifier.verticalScroll(scrollState)) {
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
         ) {
             options.forEach { optionText ->
-                SelectableChipOfInterests(
+                SelectableChipOfExp(
                     text = optionText,
                     isSelected = selectedOptions.contains(optionText),
                     onClick = {
@@ -139,17 +125,16 @@ fun Interests(backStack: NavBackStack<NavKey>){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Step 4 of 5",
+                    text = "Step 2 of 5",
                     color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.labelLarge
                 )
             }
             Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
-            ) {
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
                 Button(
                     onClick = {
-                        backStack.add(Screen.CreateAccount)
+                        backStack.add(Screen.TechStack)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -161,15 +146,13 @@ fun Interests(backStack: NavBackStack<NavKey>){
                         .weight(1F)
                 )
                 {
-                    Text(
-                        text = "Skip",
+                    Text(text = "Skip",
                         fontSize = 15.sp,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
+                        color = MaterialTheme.colorScheme.onBackground)
                 }
                 Button(
                     onClick = {
-                        backStack.add(Screen.CreateAccount)
+                        backStack.add(Screen.TechStack)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -190,12 +173,11 @@ fun Interests(backStack: NavBackStack<NavKey>){
                 }
             }
         }
-        }
     }
 }
 
 @Composable
-fun SelectableChipOfInterests(
+fun SelectableChipOfExp(
     text: String,
     isSelected: Boolean,
     onClick: () -> Unit
@@ -239,7 +221,7 @@ fun SelectableChipOfInterests(
 
 @Composable
 @Preview
-fun ShowScreenInterests(){
-    val backStack = NavBackStack<NavKey>(Screen.InterestsScreen)
-    Interests(backStack)
+fun ShowScreenExperience(){
+    val backStack = NavBackStack<NavKey>(Screen.Experience)
+    Experience(backStack)
 }

@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens
+package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.tech_stack
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -44,7 +44,6 @@ import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_left
 import devlink.shared.generated.resources.img
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
 import kotlin.collections.listOf
 
 @Composable

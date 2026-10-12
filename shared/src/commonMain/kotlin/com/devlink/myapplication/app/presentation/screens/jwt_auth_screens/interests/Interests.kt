@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens
+package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.interests
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -42,24 +44,31 @@ import devlink.shared.generated.resources.Res
 import devlink.shared.generated.resources.arrow_left
 import devlink.shared.generated.resources.img
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
-import kotlin.collections.listOf
-
 
 @Composable
-fun Mission(backStack: NavBackStack<NavKey>){
+fun Interests(backStack: NavBackStack<NavKey>){
     val options = remember {
         listOf(
-            "Grow my network",
-            "Find a co-founder",
-            "Find a job",
-            "Learn & improve my skills",
-            "Build my own project",
-            "Join a project"
+            "Startups",
+            "Open Source",
+            "Mobile Apps",
+            "Web Development",
+            "Robotics",
+            "Game Development",
+            "Cybersecurity",
+            "AI & Machine Learning",
+            "Blockchain",
+            "Cloud Computing",
+            "Developer Tools",
+            "SaaS",
+            "FinTech",
+            "Eduction",
+            "Productivity",
+            "Hardware"
         )
     }
     val selectedOptions = remember { mutableStateSetOf<String>() }
-
+    val scrollState = rememberScrollState()
     Column(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colorScheme.background)
@@ -68,13 +77,13 @@ fun Mission(backStack: NavBackStack<NavKey>){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(48.dp)
+                .size(48.dp)
                 .clickable(
                     indication = null,
                     interactionSource = remember { MutableInteractionSource() }
                 )
                 {
-                    backStack.add(Screen.EnterVerificationCode)
+                    backStack.add(Screen.TechStack)
                 }
         ) {
             Image(
@@ -87,22 +96,23 @@ fun Mission(backStack: NavBackStack<NavKey>){
         }
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
         Text(
-            text = "What brings you to DevLink?",
-             color = MaterialTheme.colorScheme.onBackground,
-             fontSize = 20.sp)
+            text = "What are you interested in?",
+            color = MaterialTheme.colorScheme.onBackground,
+            fontSize = 20.sp)
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceMedium))
         Text(
-            text = "Tell us what you want to achieve. We'll \npersonalize your experience around your goals.",
-             fontSize = 15.sp,
-             color = MaterialTheme.colorScheme.onSurface)
-            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+            text = "Pick the topics you'd like to explore, discuss, or build around.",
+            fontSize = 15.sp,
+            color = MaterialTheme.colorScheme.onSurface)
+        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceLarge))
+        Column(modifier = Modifier.verticalScroll(scrollState)) {
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
         ) {
             options.forEach { optionText ->
-                SelectableChip(
+                SelectableChipOfInterests(
                     text = optionText,
                     isSelected = selectedOptions.contains(optionText),
                     onClick = {
@@ -127,16 +137,17 @@ fun Mission(backStack: NavBackStack<NavKey>){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Step 1 of 5",
+                    text = "Step 4 of 5",
                     color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.labelLarge
                 )
             }
             Row(
-                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
+                horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)
+            ) {
                 Button(
                     onClick = {
-                        backStack.add(Screen.Experience)
+                        backStack.add(Screen.CreateAccount)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -148,13 +159,15 @@ fun Mission(backStack: NavBackStack<NavKey>){
                         .weight(1F)
                 )
                 {
-                    Text(text = "Skip",
+                    Text(
+                        text = "Skip",
                         fontSize = 15.sp,
-                        color = MaterialTheme.colorScheme.onBackground)
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
                 Button(
                     onClick = {
-                        backStack.add(Screen.Experience)
+                        backStack.add(Screen.CreateAccount)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.primary
@@ -175,12 +188,12 @@ fun Mission(backStack: NavBackStack<NavKey>){
                 }
             }
         }
+        }
     }
 }
 
-
 @Composable
-fun SelectableChip(
+fun SelectableChipOfInterests(
     text: String,
     isSelected: Boolean,
     onClick: () -> Unit
@@ -224,7 +237,7 @@ fun SelectableChip(
 
 @Composable
 @Preview
-fun ShowScreenMission(){
-    val backStack = NavBackStack<NavKey>(Screen.Mission)
-    Mission(backStack = backStack)
+fun ShowScreenInterests(){
+    val backStack = NavBackStack<NavKey>(Screen.InterestsScreen)
+    Interests(backStack)
 }

@@ -1,4 +1,4 @@
-package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens
+package com.devlink.myapplication.app.presentation.screens.jwt_auth_screens.create_account
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
